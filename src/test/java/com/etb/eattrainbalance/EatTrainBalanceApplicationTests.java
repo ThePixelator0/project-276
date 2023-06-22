@@ -1,13 +1,13 @@
-package com.cmpt276.project;
+package com.etb.eattrainbalance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjectApplicationTests {
+class EatTrainBalanceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
