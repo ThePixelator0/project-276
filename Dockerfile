@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /usr/src/app/target/EatTrainBalance-0.0.1-SNAPSHOT.jar EatTrainBalance.jar
+COPY --from=build /target/EatTrainBalance-0.0.1-SNAPSHOT.jar EatTrainBalance.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","EatTrainBalance.jar"]
