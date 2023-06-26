@@ -11,4 +11,15 @@ public class WebController {
         System.out.println("index");
         return "index";
     }
+    //may need to move this to Nutrition controller, only here so page editor doesn't need to authenticate to access
+    @GetMapping("/nutrition")
+    public String getNutritionPage() {
+        return "nutrition-tracker";
+    }
+
+    //may need to move this to a dashboard controller, only here so page editor doesn't need to authenticate to access
+    @GetMapping("/dashboard")
+    public String homeDashboard(){
+        return "home-dashboard";
+    }
 }

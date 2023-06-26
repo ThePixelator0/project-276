@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
+import java.util.ArrayList;
 
 @RequiredArgsConstructor
 @Service
@@ -24,27 +24,34 @@ public class NutritionServiceImpl implements NutritionService {
 
     @Transactional
     @Override
-    public Long addNutrition(NutritionCreateRequest request) {
+    public String addNutrition(NutritionCreateRequest request) {
         // TO BE DONE...
+        return "Hello World";
     }
 
     @Override
     public Nutrition getNutrition(Long id) {
         // TO BE DONE...
+        return new Nutrition();
     }
 
     @Override
-    public Nutrition updateNutrition(Long id, NutritionCreateRequest request) {
+    public String updateNutrition(Long id, NutritionCreateRequest request) {
         // TO BE DONE...
+        return "updated nutrition successfully";
     }
 
     @Override
-    public Long deleteNutrition(Long id) {
+    public String deleteNutrition(Long id) {
         // TO BE DONE...
+        return "deleted nutrition data successfully";
     }
 
     @Override
     public List<Nutrition> getAllNutrition() {
         // TO BE DONE...
+        //this is temporary
+        List<Nutrition> nutritionList = new ArrayList<Nutrition>();
+        return nutritionList;
     }
 }
