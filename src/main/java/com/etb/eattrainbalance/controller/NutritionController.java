@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/nutrition")
@@ -17,7 +20,7 @@ public class NutritionController {
 
     // Endpoint to create a new Nutrition entry
     @PostMapping
-    public ResponseEntity<Long> addNutrition(@RequestBody NutritionCreateRequest request) {
+    public ResponseEntity<String> addNutrition(@RequestBody NutritionCreateRequest request) {
         // Call the service layer to add a nutrition and return the id
         return ResponseEntity.ok(nutritionService.addNutrition(request));
     }
@@ -30,7 +33,7 @@ public class NutritionController {
     }
 
     // Endpoint to retrieve all Nutrition entries
-    @GetMapping("/nutritions")
+    @GetMapping("/allNutrition")
     public List<Nutrition> getAllNutrition(){
         // Call the service layer to retrieve all nutritions
         return nutritionService.getAllNutrition();
@@ -38,14 +41,14 @@ public class NutritionController {
 
     // Endpoint to update a Nutrition entry by ID
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Nutrition> updateNutrition(@PathVariable Long id, @RequestBody NutritionCreateRequest request){
+    public ResponseEntity<String> updateNutrition(@PathVariable Long id, @RequestBody NutritionCreateRequest request){
         // Call the service layer to update a nutrition by id and return the updated nutrition
         return ResponseEntity.ok(nutritionService.updateNutrition(id, request));
     }
 
     // Endpoint to delete a Nutrition entry by ID
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Long> deleteNutrition(@PathVariable Long id){
+    public ResponseEntity<String> deleteNutrition(@PathVariable Long id){
         // Call the service layer to delete a nutrition by id and return the id
         return ResponseEntity.ok(nutritionService.deleteNutrition(id));
     }
