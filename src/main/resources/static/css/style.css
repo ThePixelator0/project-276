@@ -1,0 +1,68 @@
+:root {
+    /* Colour Palette for Website */
+    --dark-green: #3f663f;
+    --text-shadow: #ffffff78;
+    --dark-olive-green: #556b2f;
+    --dark-brown: #654321;
+    --burnt-sienna: #8a360f;
+    --light-brown: #d49263;
+    --off-white: #f9f9f9;
+}
+
+.outline {
+    border: 1px dotted black;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--off-white);
+}
+
+.content-title {
+    background-color: var(--burnt-sienna);
+    display: flex;
+    align-items: flex-start;
+}
+
+.content-holder {
+    background-color: var(--dark-green);
+}
+
+.content-holder, .content-title {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    margin: 10px;
+}
+
+h1, h2 {
+    color: white;
+    text-shadow: 2px 2px 0 var(--text-shadow);
+    height: 100%;
+    padding: 5px;
+    margin: 20px 0;
+}
+
+p {
+    color: var(--off-white);
+}
+
+nav {
+    height: 100%;
+}
+
+nav > ul {
+    display: flex;
+    list-style-type: none;
+    height: 100%;
+}
+
+nav > ul > li {
+    width: 7em;
+    text-align: center;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+    color: var(--off-white);
+}

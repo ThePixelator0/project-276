@@ -25,8 +25,13 @@ public class SecurityConfig {
 
     // Array holding the whitelisted endpoints that do not require authentication
     private static final String[] AUTH_WHITELIST = {
+            // -- Authentication
             "/api/auth/login",
-            "/api/auth/register" // todo for testing REMOVE!
+            "/api/auth/register", // todo for testing REMOVE!
+            // -- Static resources
+            "/",
+            "/css/**",
+            "/js/**"
     };
 
     // UserDetailsService is used to retrieve user-related data
@@ -36,7 +41,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
                 .exceptionHandling()
                 .and()
                 .cors()
