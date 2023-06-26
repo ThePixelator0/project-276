@@ -28,8 +28,11 @@ public class SecurityConfig {
             // -- Authentication
             "/api/auth/login",
             "/api/auth/register", // todo for testing REMOVE!
-            // -- Static resources
+            // -- Front-End Pages
             "/",
+            "/login",
+            "/register",
+            // -- Static resources
             "/css/**",
             "/js/**"
     };

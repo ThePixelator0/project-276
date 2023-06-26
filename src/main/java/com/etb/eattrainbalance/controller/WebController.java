@@ -8,7 +8,11 @@ public class WebController {
     
     @GetMapping("/")
     public String defaultPage() {
-        System.out.println("index");
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
     }
 }

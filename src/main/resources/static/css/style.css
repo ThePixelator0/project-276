@@ -1,68 +1,104 @@
 :root {
     /* Colour Palette for Website */
+    --green: #05BD2D;
     --dark-green: #3f663f;
-    --text-shadow: #ffffff78;
-    --dark-olive-green: #556b2f;
-    --dark-brown: #654321;
-    --burnt-sienna: #8a360f;
-    --light-brown: #d49263;
-    --off-white: #f9f9f9;
+    --shadow: #ffffff78;
+    --black: #363636;
+    --white: #f9f9f9;
 }
 
 .outline {
     border: 1px dotted black;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--off-white);
-}
-
-.content-title {
-    background-color: var(--burnt-sienna);
+html, body {
     display: flex;
-    align-items: flex-start;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--off-white);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
 }
 
 .content-holder {
     background-color: var(--dark-green);
 }
 
-.content-holder, .content-title {
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-    width: fit-content;
-    margin: 10px;
+.submit {
+    color: var(--green);
 }
 
-h1, h2 {
-    color: white;
-    text-shadow: 2px 2px 0 var(--text-shadow);
-    height: 100%;
-    padding: 5px;
-    margin: 20px 0;
+.content-main {
+    height:100%;
 }
 
-p {
-    color: var(--off-white);
+/* Navigation Bar */
+
+.nav-selected {
+    background-color: var(--green);
 }
 
-nav {
-    height: 100%;
+.nav-unselected {
+    border: 1px dotted red;
 }
 
-nav > ul {
-    display: flex;
+.nav-selected,
+.nav-unselected {
+    border-radius: 1em;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+.content-nav, nav {
+    width: 10em;
+    height: 95%;
+    padding: 0;
+}
+
+ul {
+    padding: .75em;
     list-style-type: none;
     height: 100%;
 }
 
-nav > ul > li {
-    width: 7em;
-    text-align: center;
+a {
+    text-decoration: none;
+    padding: .25em;
 }
 
-nav > ul > li > a {
-    text-decoration: none;
-    color: var(--off-white);
+/*  */
+
+.content-title {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.content-holder {
+    background-color: var(--white);
+    color: var(--black);
+}
+
+
+.content-holder, .content-title {
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px var(--shadow);
+    width: fit-content;
+    margin: 10px;
+}
+
+h1 {
+    color: var(--white);
+}
+
+h2 {
+    color: var(--black)
+}
+
+h1, h2 {
+    text-shadow: 2px 2px 0 var(--text-shadow);
+    height: 100%;
+    padding: 5px;
+    margin: 20px 0;
 }

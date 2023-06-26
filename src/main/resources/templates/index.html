@@ -5,21 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-</head> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"></head> 
 <body>
-    <div class="content-title">
-        <h1 class="outline">Hello World</h1>
+    <div class="content-nav">
         <nav>
             <ul class="outline">
-              <li class="outline"><a href="/">Home</a></li>
-              <li class="outline"><a href="/api/auth/register">Sign Up</a></li>
-              <li class="outline"><a href="/api/auth/register">Log In</a></li>
+              <li class="nav-selected"><a href="/">Home</a></li>
+              <li class="nav-unselected"><a href="/">Nutrition Tracking</a></li>
+              <li class="nav-unselected"><a href="/">Workout Tracking</a></li>
+              <li class="nav-unselected"><a href="/">Meal Plans</a></li>
+              <li class="nav-unselected"><a href="/">Recipes</a></li>
+              <li><a href="/">Log Out</a></li>
             </ul>
           </nav>
     </div>
-    <div class="content-holder">
-        <h2>Hello World</h2>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."<p>
+    <div class="content-main">
+        <div class="content-title">
+            <h1>Welcome, {User}. Here is your fitness summary:</h1>
+        </div>
+        <div>
+            <div class="content-holder">
+                <h2>Nutrition Summary</h2>
+            </div>
+            <div class="content-holder">
+                <h2>Workout Summary</h2>
+            </div>
+            <div class="content-holder">
+                <h2>Meal Plan Summary</h2>
+            </div>
+            <div class="content-holder">
+                <h2>Recipe Summary</h2>
+            </div>
+        </div>
     </div>
 </body>
 </html>
