@@ -18,4 +18,6 @@ public interface AuthService {
     // It takes a LoginRequest object and an HttpServletRequest object as input
     // and returns a UserPrincipal object which contains user details loaded from the database.
     UserPrincipal login(LoginRequest loginRequest, HttpServletRequest request);
+
+    UserPrincipal getCurrentUserPrincipal();
 }

@@ -20,6 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
+
 import static org.springframework.security.web.context.HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY;
 
 @Service
@@ -74,5 +76,10 @@ public class AuthServiceImpl implements AuthService {
         session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
 
         return userPrincipal;
+    }
+
+    @Override
+    public UserPrincipal getCurrentUserPrincipal() {
+        return (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }
