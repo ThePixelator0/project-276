@@ -12,13 +12,12 @@
 }
 
 html, body {
-    display: flex;
     font-family: 'Inter', sans-serif;
     background-color: var(--off-white);
     height: 100%;
     padding: 0;
     margin: 0;
-    overflow: hidden; /* Hide scrollbars */
+    /*overflow: hidden;  Hide scrollbars */
 }
 
 .content-holder {
@@ -66,6 +65,7 @@ ul {
 a {
     text-decoration: none;
     padding: .25em;
+    color: var(--black)
 }
 
 /*  */
@@ -102,3 +102,81 @@ h1, h2 {
     padding: 5px;
     margin: 20px 0;
 }
+
+/*======= Home Dashboard styles =======*/
+.align-center{
+    text-align: center;
+}
+.page-container{
+    display: flex;
+}
+
+.vertical-navigation{
+    width: 15rem;
+    height: 100vh;
+    border-right: 3px solid black;
+    position: fixed
+}
+
+.link-container{
+    margin-top: 4rem;
+}
+
+.current{
+    background-color: var(--green);
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+.current a{
+    color: white;
+}
+
+.logout-link-container{
+    position: relative;
+    top: 16rem;
+    padding: 1rem;
+    background-color: black;
+}
+
+.logout a {
+    color: white;
+}
+
+.page-info-container{
+    padding: 1rem 3rem 3rem 18rem;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.welcome-card{
+    padding: 2rem;
+    border-radius: 3rem;
+    background-color: var(--green);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.welcome-card h2{
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.fitness-info-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem;
+    margin-top: 3rem;
+}
+
+.fitness-info{
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3rem;
+    padding-bottom: 10rem;
+}
+
+.fitness-info h3{
+    text-align: center;
+}
+/*======= Nutrition styles =======*/
