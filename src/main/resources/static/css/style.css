@@ -20,6 +20,10 @@ html, body {
     /*overflow: hidden;  Hide scrollbars */
 }
 
+.flex-container {
+    display: flex;
+}
+
 .content-holder {
     background-color: var(--dark-green);
 }
