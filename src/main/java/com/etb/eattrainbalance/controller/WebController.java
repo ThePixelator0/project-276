@@ -21,4 +21,10 @@ public class WebController {
     public String homeDashboard(){
         return "home-dashboard";
     }
+
+    //may need to move this to a admin controller, only here so page editor doesn't need to authenticate to access
+    @GetMapping("/admin")
+    public String adminController(){
+        return "admin-dashboard";
+    }
 }
