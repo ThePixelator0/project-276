@@ -16,6 +16,16 @@ public class WebController {
         return "nutrition-tracker";
     }
 
+    @GetMapping("/register")
+    public String getRegisterPage(){
+        return "register";
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage(){
+        return "login";
+    }
+
     //may need to move this to a dashboard controller, only here so page editor doesn't need to authenticate to access
     @GetMapping("/dashboard")
     public String homeDashboard(){

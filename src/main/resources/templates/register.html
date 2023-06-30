@@ -8,8 +8,12 @@
 </head>
 <body>
     <div class="content-holder">
-        <h2>Login Form</h2>
-        <form action="/api/auth/login" method="post">
+        <h2>Registration Form</h2>
+        <form action="/api/auth/register" method="post">
+            <div>
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
             <div>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
