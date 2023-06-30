@@ -21,4 +21,9 @@ public class WebController {
     public String homeDashboard(){
         return "home-dashboard";
     }
+
+    @GetMapping("/login-page")
+    public String getLoginPage(){
+        return "login";
+    }
 }
