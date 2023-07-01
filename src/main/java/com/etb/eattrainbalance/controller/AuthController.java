@@ -31,12 +31,12 @@ public class AuthController {
     }*/
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password) {
-        RegisterRequest request = new RegisterRequest();
-        request.setName(name);
-        request.setEmail(email);
-        request.setPassword(password);
-        return ResponseEntity.ok(authenticate.register(request));
+    public ResponseEntity<AuthResponse> register(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setName(name);
+        registerRequest.setEmail(email);
+        registerRequest.setPassword(password);
+        return ResponseEntity.ok(authenticate.register(registerRequest, request));
     }
 
     // This method handles HTTP POST requests to /api/auth/login for user login.
