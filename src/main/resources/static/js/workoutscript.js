@@ -59,7 +59,10 @@ function fetchWorkoutsByMuscle(muscle) {
     result.forEach(workout => {
       const workoutItem = document.createElement('div');
       workoutItem.className = 'workout-item';
-      workoutItem.innerHTML = `<span class="workout-name">${workout.name}</span>`;
+      workoutItem.innerHTML = `<span class="workout-name"><strong>${workout.name}</strong></span>
+                        <span class="workout-type">${workout.type}</span>
+                        <span class="workout-difficulty"><em>${workout.difficulty}</em></span>`;
+
       exerciseOptions.appendChild(workoutItem);
     });
   })
