@@ -54,13 +54,13 @@ function fetchWorkoutsByMuscle(muscle) {
     // Process the API response and display workouts
     console.log(result);
     // Update workoutList with the retrieved workout data
-    workoutList.innerHTML = ''; // Clear previous workout items
+    exerciseOptions.innerHTML = ''; // Clear previous workout items
 
     result.forEach(workout => {
       const workoutItem = document.createElement('div');
       workoutItem.className = 'workout-item';
       workoutItem.innerHTML = `<span class="workout-name">${workout.name}</span>`;
-      workoutList.appendChild(workoutItem);
+      exerciseOptions.appendChild(workoutItem);
     });
   })
   .catch(error => {
@@ -105,5 +105,5 @@ window.addEventListener('click', (event) => {
 displayDate();
 
 // Example usage: Fetch workouts by muscle (based on user input)
-const muscleSearchInput = 'biceps'; // Replace with user input
-fetchWorkoutsByMuscle(muscleSearchInput);
+// const muscleSearchInput = ''; // Replace with user input
+// fetchWorkoutsByMuscle(muscleSearchInput);

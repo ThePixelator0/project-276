@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .container {
@@ -15,7 +16,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 4rem;
-  margin-bottom: 7rem
+  margin-bottom: 5rem
 }
 
 .date-navigation .nav-arrow {
@@ -32,7 +33,7 @@ body {
 
 .remaining-workouts {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 5rem;
 }
 
 .workout-list {
@@ -40,6 +41,10 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
+  border: #000000 3px solid;
+  border-radius: 30px;
+  width: 50%;
+  height: 50%;
 }
 
 .workout-item {
@@ -84,11 +89,17 @@ body {
 }
 
 .modal-content {
+  display: flex;
+  flex-direction: column;
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 300px;
+  border: #000000 3px solid;
+  border-radius: 30px;
+  height: 700px;
+  width: 900px;
+  justify-content: center;
+  align-items: center;
 }
 
 #searchBar {

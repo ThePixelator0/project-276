@@ -12,7 +12,7 @@
       <span class="nav-arrow" id="nextArrow"><i class="fa fa-chevron-right"></i></span>
     </div>
     <div class="remaining-workouts">
-      <span class="count" id="remainingCount"></span>
+      <span class="count" id="remainingCount">You have done {} workouts today.</span>
     </div>
     <div class="workout-list" id="workoutList">
       <!-- Workout items will be dynamically added here -->
@@ -25,9 +25,18 @@
   <!-- Modal -->
   <div id="myModal" class="modal">
     <div class="modal-content">
-      <input type="text" id="searchBar" placeholder="Enter muscle to search">
-      <button id="searchBtn">Enter</button>
-      <div id="exerciseOptions"></div>
+      <div class="search-title">
+        <h4>Search for a workout by muscle, type or difficulty.</h4>
+      </div>
+      <div class="searchbar">
+        <input type="text" id="searchBar" placeholder="Enter muscle to search">
+      </div>
+      <div class="enter">
+        <button id="searchBtn">Enter</button>
+      </div>
+      <div class="exercise-options" id="exerciseOptions">
+
+      </div>
     </div>
   </div>
 
