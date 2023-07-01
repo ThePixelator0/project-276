@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="../static/css/workouts.css">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/workouts.css}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <div class="container">
     <div class="date-navigation">
-      <span class="nav-arrow" id="prevArrow"><i class="fa fa-arrow-left"></i></span>
+      <span class="nav-arrow" id="prevArrow"><i class="fa fa-chevron-left"></i></span>
       <span class="date" id="dateDisplay"></span>
-      <span class="nav-arrow" id="nextArrow"><i class="fa fa-arrow-right"></i></span>
+      <span class="nav-arrow" id="nextArrow"><i class="fa fa-chevron-right"></i></span>
     </div>
     <div class="remaining-workouts">
-      <span class="count">{3} workouts remaining</span>
+      <span class="count" id="remainingCount"></span>
     </div>
-    <div class="workout-list">
-      <div class="workout-item">
-        <span class="workout-name">Workout 1</span>
-      </div>
-      <div class="workout-item">
-        <span class="workout-name">Workout 2</span>
-      </div>
-      <div class="workout-item">
-        <span class="workout-name">Workout 3</span>
-      </div>
+    <div class="workout-list" id="workoutList">
+      <!-- Workout items will be dynamically added here -->
     </div>
     <div class="add-workout">
-      <button>Add Workout</button>
+      <button id="addWorkoutBtn">Add Workout</button>
     </div>
   </div>
 
-  <script src="../static/scripts/workoutscript.js"></script>
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <input type="text" id="searchBar" placeholder="Enter muscle to search">
+      <button id="searchBtn">Enter</button>
+      <div id="exerciseOptions"></div>
+    </div>
+  </div>
+
+  <script th:src="@{/js/workoutscript.js}"></script>
 </body>
 </html>
