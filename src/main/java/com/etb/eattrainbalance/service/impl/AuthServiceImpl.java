@@ -34,12 +34,12 @@ public class AuthServiceImpl implements AuthService {
     // Method to register a new user
     @Transactional // This annotation ensures that the method is executed within a transaction
     @Override
-    public AuthResponse register(RegisterRequest request) {
+    public AuthResponse register(RegisterRequest registerRequest, HttpServletRequest request) {
         // Building a new User object from the registration request
         User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .name(registerRequest.getName())
+                .email(registerRequest.getEmail())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.USER)
                 .enable(true)
                 .resetPassword(false)
@@ -47,6 +47,60 @@ public class AuthServiceImpl implements AuthService {
         
         // Save the user to the database
         user =  userRepository.save(user);
+
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                registerRequest.getEmail(),
+                registerRequest.getPassword()
+            )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+
+        //UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(authentication);
+        HttpSession session = request.getSession(true);
+        session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
+
+        // Return a response containing the user's ID
+        return new AuthResponse(user.getId());
+    }
+
+    @Transactional // This annotation ensures that the method is executed within a transaction
+    @Override
+    public AuthResponse registerAdmin(RegisterRequest registerRequest, HttpServletRequest request) {
+        // Building a new User object from the registration request
+        User user = User.builder()
+                .name(registerRequest.getName())
+                .email(registerRequest.getEmail())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .role(Role.ADMIN)
+                .enable(true)
+                .resetPassword(false)
+                .build();
+        
+        // Save the user to the database
+        user =  userRepository.save(user);
+
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                registerRequest.getEmail(),
+                registerRequest.getPassword()
+            )
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+
+        //UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        SecurityContext sc = SecurityContextHolder.getContext();
+        sc.setAuthentication(authentication);
+        HttpSession session = request.getSession(true);
+        session.setAttribute(SPRING_SECURITY_CONTEXT_KEY, sc);
 
         // Return a response containing the user's ID
         return new AuthResponse(user.getId());

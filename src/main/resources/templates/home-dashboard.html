@@ -31,9 +31,9 @@
                 <p class="align-center"><a href="/dashboard">Recipes</a></p>
             </div>
 
-            <!--<div class="link-container">
-                <p class="align-center"><a href="/admin">Admin</a></p>
-            </div>-->
+            <div class="link-container">
+                <p class="align-center"><a href="/admin"><span th:text="${#authentication.getPrincipal().getAuthorities[0]}"></span></a></p>
+            </div>
 
             <div class="logout-link-container">
                 <p class="align-center logout"><a href="#">Log out</a></p>
@@ -41,7 +41,7 @@
         </div>
         <div class="page-info-container">
             <div class="welcome-card">
-                <h2>Welcome, {User}. Here is your fitness summary</h2>
+                <h2>Welcome, <span th:text="${#authentication.getPrincipal().getName}"></span>. Here is your fitness summary</h2>
             </div>
             <div class="fitness-info-container">
                 <div class="fitness-info">

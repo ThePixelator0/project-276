@@ -12,7 +12,9 @@ public interface AuthService {
     // Method to register a new user.
     // It takes a RegisterRequest object as input
     // and returns an AuthResponse object which might contain information about the registration status.
-    AuthResponse register(RegisterRequest request);
+    AuthResponse register(RegisterRequest registerRequest, HttpServletRequest request);
+
+    AuthResponse registerAdmin(RegisterRequest registerRequest, HttpServletRequest request);
 
     // Method to log in an existing user.
     // It takes a LoginRequest object and an HttpServletRequest object as input

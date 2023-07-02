@@ -27,11 +27,13 @@ public class SecurityConfig {
     private static final String[] AUTH_WHITELIST = {
             // -- Authentication
             "/api/auth/login",
-            "/api/auth/register", // todo for testing REMOVE!
+            "/api/auth/register",
+            "/api/auth/register-admin",
             // -- Front-End Pages
             "/",
             "/login",
             "/register",
+            "/register-admin",
             "/nutrition",
             "/workouts",
             "/admin",
