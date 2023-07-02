@@ -31,21 +31,33 @@ public class AuthController {
     }*/
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
+    public String register(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setName(name);
         registerRequest.setEmail(email);
         registerRequest.setPassword(password);
-        return ResponseEntity.ok(authenticate.register(registerRequest, request));
+        ResponseEntity.ok(authenticate.register(registerRequest, request));
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/register-admin")
+    public String registerAdmin(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
+        RegisterRequest registerRequest = new RegisterRequest();
+        registerRequest.setName(name);
+        registerRequest.setEmail(email);
+        registerRequest.setPassword(password);
+        ResponseEntity.ok(authenticate.registerAdmin(registerRequest, request));
+        return "redirect:/dashboard";
     }
 
     // This method handles HTTP POST requests to /api/auth/login for user login.
     @PostMapping("/login")
-    public ResponseEntity<UserPrincipal> login(@Valid @RequestParam("email") String email, @RequestParam("password") String password, final HttpServletRequest request) {
+    public String login(@Valid @RequestParam("email") String email, @RequestParam("password") String password, final HttpServletRequest request) {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(email);
         loginRequest.setPassword(password);
-        return ResponseEntity.ok(authenticate.login(loginRequest, request));
+        ResponseEntity.ok(authenticate.login(loginRequest, request));
+        return "redirect:/dashboard";
     }
 
 }
