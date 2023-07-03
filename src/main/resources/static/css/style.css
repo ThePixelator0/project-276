@@ -126,6 +126,10 @@ h2 {
     padding: 1rem;
     border-radius: 2rem;
 }
+
+.current p{
+    margin: 0;
+}
 .current a{
     color: white;
 }
