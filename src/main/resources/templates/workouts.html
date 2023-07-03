@@ -5,31 +5,64 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <div class="container">
-    <div class="date-navigation">
-      <span class="nav-arrow" id="prevArrow"><i class="fa fa-chevron-left"></i></span>
-      <span class="date" id="dateDisplay"></span>
-      <span class="nav-arrow" id="nextArrow"><i class="fa fa-chevron-right"></i></span>
+  <div class="page-container">
+    <div class="vertical-navigation">
+        <div class="link-container">
+            <p class="align-center"><a href="/dashboard">Home</a></p>
+        </div>
+
+        <div class="link-container">
+            <p class="align-center"><a href="/dashboard">Nutrition tracking</a></p>
+        </div>
+
+        <div class="link-container">
+            <p class="align-center current"><a href="/workouts">Workout Tracking</a></p>
+        </div>
+
+        <div class="link-container">
+            <p class="align-center"><a href="/dashboard">Meal Plans</a></p>
+        </div>
+        <div class="link-container">
+            <p class="align-center"><a href="/dashboard">Recipes</a></p>
+        </div>
+
+        <div class="link-container">
+            <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
+        </div>
+
+        <div class="logout-link-container">
+            <p class="align-center logout"><a href="/logout">Log out</a></p>
+        </div>
     </div>
-    <!-- <div class="remaining-workouts">
-      <span class="count" id="remainingCount">You have done {} workouts today.</span>
-    </div> -->
-    <div class="workout-list" id="workoutList">
-      <!-- Workout items will be dynamically added here -->
-      <div th:each="workout:${work}">
-        <div>
-            <div>
-                <h5 th:text="${workout.workoutName}"></h5>
-                <p>Type: <span th:text="${workout.workoutType}"></span></p>
-                <p>Difficulty: <span th:text="${workout.workoutDifficulty}"></span></p>
+    <div class="page-info-container">
+      <div class="container">
+        <div class="date-navigation">
+          <span class="nav-arrow" id="prevArrow"><i class="fa fa-chevron-left"></i></span>
+          <span class="date" id="dateDisplay"></span>
+          <span class="nav-arrow" id="nextArrow"><i class="fa fa-chevron-right"></i></span>
+        </div>
+        <!-- <div class="remaining-workouts">
+          <span class="count" id="remainingCount">You have done {} workouts today.</span>
+        </div> -->
+        <div class="workout-list" id="workoutList">
+          <!-- Workout items will be dynamically added here -->
+          <div th:each="workout:${work}">
+            <div class="workouts-added">
+                <div>
+                    <h5 th:text="${workout.workoutName}"></h5>
+                    <p>Type: <span th:text="${workout.workoutType}"></span></p>
+                    <p>Difficulty: <span th:text="${workout.workoutDifficulty}"></span></p>
+                </div>
             </div>
+          </div>
+        </div>
+        <div class="add-workout">
+          <button id="addWorkoutBtn">Add Workout</button>
         </div>
       </div>
     </div>
-    <div class="add-workout">
-      <button id="addWorkoutBtn">Add Workout</button>
-    </div>
-  </div>
+</div>
+  
 
   <!-- Modal -->
   <div id="myModal" class="modal">
