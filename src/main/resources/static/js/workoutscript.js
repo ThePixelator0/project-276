@@ -36,7 +36,6 @@ function goToNextDate() {
   displayDate();
 }
 
-// Function to fetch workouts based on muscle
 function fetchWorkoutsByMuscle(muscle) {
   const apiKey = 'gpZ/zwU7vHvlHtZsnDHqFA==lJ4IKSI51VIxXbb8'; // Replace with your actual API key
   const url = `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`;
@@ -59,9 +58,14 @@ function fetchWorkoutsByMuscle(muscle) {
     result.forEach(workout => {
       const workoutItem = document.createElement('div');
       workoutItem.className = 'workout-item';
-      workoutItem.innerHTML = `<span class="workout-name"><strong>${workout.name}</strong></span>
-                        <span class="workout-type">${workout.type}</span>
-                        <span class="workout-difficulty"><em>${workout.difficulty}</em></span>`;
+      workoutItem.innerHTML = `<span class="workout-name" id="name"><strong>${workout.name}</strong></span>
+                        <span class="workout-type" id="type">${workout.type}</span>
+                        <span class="workout-difficulty" id="difficulty"><em>${workout.difficulty}</em></span>`;
+
+      // Add a click event listener to each workout item
+      workoutItem.addEventListener('click', () => {
+        addWorkoutToBackend(workout);
+      });
 
       exerciseOptions.appendChild(workoutItem);
     });
@@ -70,6 +74,26 @@ function fetchWorkoutsByMuscle(muscle) {
     console.error('Error: ', error);
   });
 }
+
+function addWorkoutToBackend(workout) {
+  const url = `/workouts/add?name=${workout.name}&type=${workout.type}&difficulty=${workout.difficulty}`;
+
+  fetch(url, {
+    method: 'POST'
+  })
+  .then(response => {
+    if (response.ok) {
+      console.log('Workout added to backend');
+      location.reload(); // Refresh the page
+    } else {
+      console.error('Failed to add workout to backend');
+    }
+  })
+  .catch(error => {
+    console.error('Error adding workout to backend:', error);
+  });
+}
+
 
 // Function to open the modal
 function openModal() {
@@ -82,8 +106,8 @@ function closeModal() {
 }
 
 // Event listeners for navigation arrows
-prevArrow.addEventListener('click', goToPreviousDate);
-nextArrow.addEventListener('click', goToNextDate);
+// prevArrow.addEventListener('click', goToPreviousDate);
+// nextArrow.addEventListener('click', goToNextDate);
 
 // Event listener for add workout button
 addWorkoutBtn.addEventListener('click', openModal);

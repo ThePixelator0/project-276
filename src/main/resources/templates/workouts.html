@@ -11,11 +11,20 @@
       <span class="date" id="dateDisplay"></span>
       <span class="nav-arrow" id="nextArrow"><i class="fa fa-chevron-right"></i></span>
     </div>
-    <div class="remaining-workouts">
+    <!-- <div class="remaining-workouts">
       <span class="count" id="remainingCount">You have done {} workouts today.</span>
-    </div>
+    </div> -->
     <div class="workout-list" id="workoutList">
       <!-- Workout items will be dynamically added here -->
+      <div th:each="workout:${work}">
+        <div>
+            <div>
+                <h5 th:text="${workout.workoutName}"></h5>
+                <p>Type: <span th:text="${workout.workoutType}"></span></p>
+                <p>Difficulty: <span th:text="${workout.workoutDifficulty}"></span></p>
+            </div>
+        </div>
+      </div>
     </div>
     <div class="add-workout">
       <button id="addWorkoutBtn">Add Workout</button>

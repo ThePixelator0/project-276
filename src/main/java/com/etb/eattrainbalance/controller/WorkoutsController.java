@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,9 +31,22 @@ public class WorkoutsController {
     private WorkoutRepository workoutRepo;
 
     @GetMapping("/workouts")
-    public String getWorkoutsPage() {
+    public String getWorkoutsPage(Model model) {
+        System.out.println("Getting all users");
+        List<Workouts> workouts = workoutRepo.findAll();
+        
+        model.addAttribute("work", workouts);
         return "workouts";
     }
 
-
+    @PostMapping("/workouts/add")
+    public String addWorkout(@RequestParam Map<String, String> newworkout, HttpServletResponse response) {
+        System.out.println("ADD workout");
+        String newWorkoutName = newworkout.get("name");
+        String newWorkoutType = newworkout.get("type");
+        String newWorkoutDifficulty = newworkout.get("difficulty");
+        workoutRepo.save(new Workouts(newWorkoutName, newWorkoutType, newWorkoutDifficulty));
+        response.setStatus(201);
+        return "workouts";
+    }
 }

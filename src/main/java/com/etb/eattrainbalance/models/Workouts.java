@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 @Table(name="workouts")
 
 public class Workouts {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int uid;
     private String workoutName;
     private String workoutType;
     private String workoutDifficulty;
