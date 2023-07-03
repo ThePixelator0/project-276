@@ -32,7 +32,7 @@
             </div>
 
             <div class="link-container">
-                <p class="align-center current"><a href="/admin">Admin</a></p>
+                <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
             </div>
             
             <div class="logout-link-container">
@@ -40,7 +40,28 @@
             </div>
         </div>
         <div class="page-info-container">
-            
+            <h1 class="admin-title">Admin Actions</h1>
+            <div class="user-info-container">
+                <div class="user-info" th:each="user:${us}">
+                    <div class="user-info-id">
+                        <p th:text="${user.getId()}"></p>
+                    </div>
+                    
+                    <div>
+                        <p th:text="${user.getName()}"></p>
+                    </div>
+                    <div>
+                        <p th:text="${user.getEmail}"></p>
+                    </div>
+
+                    <div>
+                        <p th:text="${user.getAuthorities()}"></p>
+                    </div>
+                    <form class="delete-user-form">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

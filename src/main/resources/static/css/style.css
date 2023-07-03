@@ -100,15 +100,8 @@ h2 {
     color: var(--black)
 }
 
-h1, h2 {
-    text-shadow: 2px 2px 0 var(--text-shadow);
-    height: 100%;
-    padding: 5px;
-    margin: 20px 0;
-}
 
-/* ======= Home Dashboard styles ======= */
-
+/*======= Home Dashboard styles =======*/
 .align-center{
     text-align: center;
 }
@@ -261,4 +254,50 @@ nav {
 
 .features h3 {
     text-align: center;
+
+}
+/*======= Nutrition styles =======*/
+
+
+
+/*======= Admin styles =======*/
+.admin-title{
+    color: black;
+
+}
+
+.user-info-container{
+    border: 3px solid var(--green);
+    border-radius: 3rem;
+    padding-bottom: 3rem;
+}
+
+.user-info{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px solid var(--green);
+}
+
+
+.delete-user-form{
+    padding-right: 3rem;
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.delete-user-form button{
+    padding: 1rem 3rem;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.user-info div{
+    padding-right: 3rem;
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }

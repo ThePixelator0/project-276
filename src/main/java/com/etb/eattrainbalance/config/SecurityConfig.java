@@ -36,7 +36,6 @@ public class SecurityConfig {
             "/register-admin",
             "/nutrition",
             "/workouts",
-            "/admin",
             // -- Static resources
             "/css/**",
             "/js/**"

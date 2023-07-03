@@ -54,7 +54,7 @@ public class AuthController {
 
     // This method handles HTTP POST requests to /api/auth/login for user login.
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@Valid @RequestParam("email") String email, @RequestParam("password") String password, final HttpServletRequest request) {
+    public ResponseEntity<Void> login(@Valid @RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) {
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(email);
         loginRequest.setPassword(password);

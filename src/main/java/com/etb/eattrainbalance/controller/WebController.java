@@ -1,11 +1,17 @@
 package com.etb.eattrainbalance.controller;
 
+import org.springframework.ui.Model;
+import com.etb.eattrainbalance.persistence.repository.UserRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class WebController {
-    
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/")
     public String defaultPage() {
         return "index";
@@ -39,7 +45,8 @@ public class WebController {
 
     //may need to move this to a admin controller, only here so page editor doesn't need to authenticate to access
     @GetMapping("/admin")
-    public String adminController(){
+    public String adminController(Model model){
+        model.addAttribute("us", userRepository.findAll());
         return "admin-dashboard";
     }
 }

@@ -32,7 +32,7 @@
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/admin"><span th:text="${#authentication.getPrincipal().getAuthorities[0]}"></span></a></p>
+                <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
             </div>
 
             <div class="logout-link-container">
