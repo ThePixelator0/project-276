@@ -107,7 +107,8 @@ h1, h2 {
     margin: 20px 0;
 }
 
-/*======= Home Dashboard styles =======*/
+/* ======= Home Dashboard styles ======= */
+
 .align-center{
     text-align: center;
 }
@@ -184,4 +185,80 @@ h1, h2 {
 .fitness-info h3{
     text-align: center;
 }
-/*======= Nutrition styles =======*/
+/* ======= Nutrition styles ======= */
+
+
+/* ======= Index styles ======= */
+
+header {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+    height: 100%;
+}
+
+.button { 
+    display: flex; /* this makes it a flex container */
+    justify-content: center; /* this centers the contents horizontally */
+    align-items: center;
+
+    font-size: large;
+    background-color: var(--green);
+    color: var(--white);
+
+    padding: 10px 20px;
+    cursor: pointer;
+    
+    width: 150px;
+    height: 50px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    background-color: var(--white);
+    color: var(--green);
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 200px;
+    color: var(--white);
+    font-size: larger;
+}
+
+nav {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+}
+
+.feature {
+    width: 240px;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 1em;
+}
+
+.features h3 {
+    text-align: center;
+}

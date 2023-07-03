@@ -1,44 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"></head> 
-<body class="flex-container">
-    <div class="content-nav">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
         <nav>
-            <ul class="outline">
-              <li class="nav-selected"><a href="/">Home</a></li>
-              <li class="nav-unselected"><a href="/">Nutrition Tracking</a></li>
-              <li class="nav-unselected"><a href="/">Workout Tracking</a></li>
-              <li class="nav-unselected"><a href="/">Meal Plans</a></li>
-              <li class="nav-unselected"><a href="/">Recipes</a></li>
-              <li><a href="/">Log Out</a></li>
-            </ul>
-          </nav>
-    </div>
-    <div class="content-main">
-        <div class="content-title">
-            <h1>Welcome, {User}. Here is your fitness summary:</h1>
-        </div>
-        <div>
-            <div class="content-holder">
-                <h2>Nutrition Summary</h2>
+            <div class="logo">EatTrainBalance</div>
+            <div class="nav-buttons">
+                <a class="button" href="login">Log In</a>
+                <a class="button" href="register">Sign Up</a>
             </div>
-            <div class="content-holder">
-                <h2>Workout Summary</h2>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero"> <div class="welcome-card">
+            <h1>Welcome to EatTrainBalance</h1>
+            <p>Your ultimate hub for nutrition, workout tracking, meal plans, and delicious recipes.</p>
+        </div> </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Nutrition Tracking</h3>
+                <p>Log meals and track calorie and nutrient intake for a balanced diet.</p>
             </div>
-            <div class="content-holder">
-                <h2>Meal Plan Summary</h2>
+
+            <div class="feature">
+                <h3>Workout Tracking</h3>
+                <p>Record exercises, set fitness goals, and track your progress.</p>
             </div>
-            <div class="content-holder">
-                <h2>Recipe Summary</h2>
+
+            <div class="feature">
+                <h3>Meal Plans</h3>
+                <p>Customize meal plans based on dietary preferences and health goals.</p>
             </div>
-        </div>
-    </div>
+
+            <div class="feature">
+                <h3>Recipes</h3>
+                <p>Explore a variety of healthy recipes, with cooking instructions and nutritional info.</p>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
