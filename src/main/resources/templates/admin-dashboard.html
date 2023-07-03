@@ -31,8 +31,8 @@
                 <p class="align-center"><a href="/dashboard">Recipes</a></p>
             </div>
 
-            <div class="link-container">
-                <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
+            <div class="link-container current">
+                <p class="align-center"><a href="/admin" th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</a></p>
             </div>
             
             <div class="logout-link-container">
