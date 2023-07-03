@@ -7,6 +7,7 @@ import com.etb.eattrainbalance.modal.response.AuthResponse;
 import com.etb.eattrainbalance.modal.security.UserPrincipal;
 import com.etb.eattrainbalance.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -63,6 +64,16 @@ public class AuthController {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/dashboard");
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if(session != null){
+            session.invalidate();
+        }
+        
+        return "redirect:/";
     }
 
 }
