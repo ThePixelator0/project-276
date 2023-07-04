@@ -12,7 +12,7 @@
         </div>
 
         <div class="link-container">
-            <p class="align-center"><a href="/dashboard">Nutrition tracking</a></p>
+            <p class="align-center"><a href="/nutrition">Nutrition tracking</a></p>
         </div>
 
         <div class="link-container">
@@ -20,12 +20,8 @@
         </div>
 
         <div class="link-container">
-            <p class="align-center"><a href="/dashboard">Meal Plans</a></p>
+            <p class="align-center"><a href="/plans">Meal Plans</a></p>
         </div>
-        <div class="link-container">
-            <p class="align-center"><a href="/dashboard">Recipes</a></p>
-        </div>
-
         <div class="link-container">
             <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
         </div>
