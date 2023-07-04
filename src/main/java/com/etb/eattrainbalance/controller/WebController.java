@@ -5,12 +5,15 @@ import org.springframework.ui.Model;
 import com.etb.eattrainbalance.persistence.entity.User;
 import com.etb.eattrainbalance.persistence.repository.UserRepository;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebController {
@@ -56,9 +59,30 @@ public class WebController {
     }
 
     @GetMapping("/user/delete/{id}")
-    public String userDelete(@PathVariable("id") Long id, Model model){
-        //Optional<User> user = userRepository.findById(id);
-        userRepository.deleteById(id);;
+    public String userDelete(@PathVariable("id") Long id){
+        userRepository.deleteById(id);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("user/update/{id}")
+    public String getEditPage(@PathVariable("id") Long id, Model model){
+        model.addAttribute("user", userRepository.findById(id));
+        return "edit-user";
+    }
+
+    @PostMapping("/user/edit/{id}")
+    public String editUser(@PathVariable("id") Long id, @RequestParam Map <String, String> updateUser){
+        String name = updateUser.get("name");
+        String email = updateUser.get("email");
+
+        Optional<User> userOptional = userRepository.findById(id);
+        User user = userOptional.orElse(null);
+        if(user != null){
+            user.setName(name);
+            user.setEmail(email);
+        }
+
+        userRepository.save(user);
         return "redirect:/admin";
     }
 }

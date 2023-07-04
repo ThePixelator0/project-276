@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Edit User</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"></head> 
@@ -37,31 +37,12 @@
             </div>
         </div>
         <div class="page-info-container">
-            <h1 class="admin-title">Admin Portal</h1>
-            <div class="user-info-container">
-                <div class="user-info" th:each="user:${us}">
-                    <div class="user-info-id">
-                        <p th:text="${user.getId()}"></p>
-                    </div>
-                    
-                    <div>
-                        <p th:text="${user.getName()}"></p>
-                    </div>
-                    <div>
-                        <p th:text="${user.getEmail}"></p>
-                    </div>
-
-                    <div>
-                        <p th:text="${user.getAuthorities()}"></p>
-                    </div>
-                    <div class="user-form">
-                        <p><a class="edit-button" th:href="@{/user/update/{id}(id=${user.getId()})}">Edit User</a></p>
-                    </div>
-                    <div class="user-form">
-                        <p><a class="delete-button" th:href="@{/user/delete/{id}(id=${user.getId()})}">Delete</a></p>
-                    </div>
-                </div>
-            </div>
+            <form th:action="@{/user/edit/{id}(id=${id})}"  method="post" th:object="${user}" class="edit-form">
+                <h1 class="admin-title">Edit User</h1>
+                <input type="text" th:field="*{name}" placeholder="Name">
+                <input type="email" th:field="*{email}" placeholder="Email">
+                <button type="submit">Submit</button>
+            </form>
         </div>
     </div>
 </body>
