@@ -57,9 +57,9 @@
                     <div>
                         <p th:text="${user.getAuthorities()}"></p>
                     </div>
-                    <form class="delete-user-form">
-                        <button type="submit">Delete</button>
-                    </form>
+                    <div class="delete-user-form">
+                        <a th:href="@{/user/delete/{id}(id=${user.getId()})}">Delete</a>
+                    </div>
                 </div>
             </div>
         </div>

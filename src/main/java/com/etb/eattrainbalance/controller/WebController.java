@@ -1,11 +1,16 @@
 package com.etb.eattrainbalance.controller;
 
 import org.springframework.ui.Model;
+
+import com.etb.eattrainbalance.persistence.entity.User;
 import com.etb.eattrainbalance.persistence.repository.UserRepository;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class WebController {
@@ -48,5 +53,12 @@ public class WebController {
     public String adminController(Model model){
         model.addAttribute("us", userRepository.findAll());
         return "admin-dashboard";
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String userDelete(@PathVariable("id") Long id, Model model){
+        //Optional<User> user = userRepository.findById(id);
+        userRepository.deleteById(id);;
+        return "redirect:/admin";
     }
 }
