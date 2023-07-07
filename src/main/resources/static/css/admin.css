@@ -1,0 +1,99 @@
+/*======= Admin Dashboard =======*/
+.admin-title{
+    color: black;
+}
+
+.user-info-container{
+    border: 3px solid var(--green);
+    border-radius: 3rem;
+    padding-bottom: 3rem;
+}
+
+.user-info{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px solid var(--green);
+}
+
+
+.user-form{
+    padding-right: 3rem;
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.user-form button{
+    padding: 1rem 2rem;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button{
+    padding: 1rem 2rem;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+}
+
+.edit-button{
+    padding: 1rem 2rem;
+    background-color: var(--green);
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+}
+
+.user-info div{
+    padding-right: 3rem;
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.edit-user-modal{
+    display: block;
+    position: absolute;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    width: 50%;
+    margin: auto;
+}
+
+
+
+/* ======= Edit User ======= */
+.edit-form{
+    border: 3px solid var(--green);
+    border-radius: 3rem;
+    width: 50%;
+    margin: auto;
+    margin-top: 5rem;
+    padding: 1rem 4rem;
+}
+
+.edit-form input{
+    display: block;
+    padding: 1rem 0.3rem;
+    color: black;
+    border: 1px solid black;
+    width: 100%;
+    margin-bottom: 3rem;
+
+}
+
+.edit-form button{
+    background-color: var(--green);
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    cursor: pointer;
+}

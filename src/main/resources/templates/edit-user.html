@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
-    <link rel="stylesheet" type="text/css" href="../../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"></head> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+</head> 
 </head>
 <body>
     <div class="page-container">
@@ -36,6 +39,7 @@
                 <p class="align-center logout"><a href="/logout">Log out</a></p>
             </div>
         </div>
+        
         <div class="page-info-container">
             <form th:action="@{/user/edit/{id}(id=${id})}"  method="post" th:object="${user}" class="edit-form">
                 <h1 class="admin-title">Edit User</h1>

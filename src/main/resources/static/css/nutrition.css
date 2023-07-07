@@ -1,0 +1,63 @@
+:root {
+    /* Colour Palette for Website */
+    --green: #05BD2D;
+    --dark-green: #3f663f;
+    --shadow: #ffffff78;
+    --black: #363636;
+    --white: #f9f9f9;
+}
+
+/* ======= Nutrition styles ======= */
+.date-navigation-container{
+    text-align: center;
+}
+
+.date-navigation-container span{
+    font-size: 1rem;
+}
+
+.calorie-counter-container{
+    margin-top: 5rem;
+}
+
+.calorie-title{
+    font-size: 1.8rem;
+}
+
+.calorie-count{
+    color: var(--green);
+    font-size: 1.6rem;
+}
+
+.meals-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+    grid-gap: 3rem;
+}
+
+.meals-bubble{
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3rem;
+}
+
+.meals-bubble h6{
+    margin-left: 3rem;
+    font-size: 1.5rem;
+}
+
+.meals-bubble p{
+    color: var(--green);
+    margin-top: 5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.meal-item-count{
+    font-size: 1.5rem;
+    margin-left: 27rem;
+    position: relative;
+    top: -5rem;
+    color: var(--green);
+}

@@ -1,0 +1,43 @@
+
+.vertical-navigation{
+    width: 15rem;
+    height: 100vh;
+    border-right: 3px solid black;
+    position: fixed
+}
+
+.link-container{
+    margin-top: 4rem;
+    height: 50px;
+}
+
+.current{
+    background-color: var(--green);
+}
+
+.unselected,
+.current {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    height: 18px;
+}
+
+.current p{
+    margin: 0;
+}
+.current a{
+    color: white;
+}
+
+.logout-link-container{
+    position: absolute;
+    bottom: 0;
+    width: 13rem;
+    padding: 1rem;
+    background-color: black;
+}
+
+.logout a {
+    color: white;
+}

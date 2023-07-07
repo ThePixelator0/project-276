@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/plans.css}">
-    <!-- <link rel="stylesheet" type="text/css" href="../static/css/plans.css"> -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
     <title>Meal Plans</title>
 </head>
 <body>
@@ -12,15 +13,15 @@
     <div class="page-container">
         <div class="vertical-navigation">
             <div class="link-container">
-                <p class="align-center"><a href="/dashboard">Home</a></p>
+                <p class="align-center unselected"><a href="/dashboard">Home</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/nutrition">Nutrition tracking</a></p>
+                <p class="align-center unselected"><a href="/nutrition">Nutrition Tracking</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/workouts">Workout Tracking</a></p>
+                <p class="align-center unselected"><a href="/workouts">Workout Tracking</a></p>
             </div>
 
             <div class="link-container">
@@ -28,7 +29,7 @@
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
+                <p class="align-center unselected"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
             </div>
 
             <div class="logout-link-container">

@@ -4,32 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"></head> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/admin.css}">
+</head> 
 </head>
 <body>
     <div class="page-container">
         <div class="vertical-navigation">
             <div class="link-container">
-                <p class="align-center"><a href="/dashboard">Home</a></p>
+                <p class="align-center unselected"><a href="/dashboard">Home</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/nutrition">Nutrition tracking</a></p>
+                <p class="align-center unselected"><a href="/nutrition">Nutrition Tracking</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/workouts">Workout Tracking</a></p>
+                <p class="align-center unselected"><a href="/workouts">Workout Tracking</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/plans">Meal Plans</a></p>
+                <p class="align-center unselected"><a href="/plans">Meal Plans</a></p>
             </div>
 
-            <div class="link-container current">
-                <p class="align-center"><a href="/admin" th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</a></p>
+            <div class="link-container">
+                <p class="align-center current"><a href="/admin" th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</a></p>
             </div>
             
             <div class="logout-link-container">

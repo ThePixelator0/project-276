@@ -1,0 +1,96 @@
+:root {
+    /* Colour Palette for Website */
+    --green: #05BD2D;
+    --dark-green: #3f663f;
+    --shadow: #ffffff78;
+    --black: #363636;
+    --white: #f9f9f9;
+}
+
+
+/* ======= Index styles ======= */
+
+h1 {
+    color: var(--white);
+}
+header {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+    height: 100%;
+}
+
+.button { 
+    display: flex; /* this makes it a flex container */
+    justify-content: center; /* this centers the contents horizontally */
+    align-items: center;
+
+    font-size: large;
+    background-color: var(--green);
+    color: var(--white);
+
+    padding: 10px 20px;
+    cursor: pointer;
+    
+    width: 150px;
+    height: 50px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.button:hover {
+    background-color: var(--white);
+    color: var(--green);
+}
+
+.hero {
+    padding: 50px 200px;
+    margin: 50px;
+    color: var(--white);
+    font-size: larger;
+    border-radius: 3rem;
+    background-color: var(--green);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+nav {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+}
+
+.feature {
+    width: 240px;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 1em;
+}
+
+.features h3 {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}

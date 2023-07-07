@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutrition Tracker</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nutrition.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,29 +16,30 @@
     <div class="page-container">
         <div class="vertical-navigation">
             <div class="link-container">
-                <p class="align-center"><a href="/dashboard">Home</a></p>
+                <p class="align-center unselected"><a href="/dashboard">Home</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center current"><a href="/nutrition">Nutrition tracking</a></p>
+                <p class="align-center current"><a href="/nutrition">Nutrition Tracking</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/workouts">Workout Tracking</a></p>
+                <p class="align-center unselected"><a href="/workouts">Workout Tracking</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/plans">Meal Plans</a></p>
+                <p class="align-center unselected"><a href="/plans">Meal Plans</a></p>
             </div>
 
             <div class="link-container">
-                <p class="align-center"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
+                <p class="align-center unselected"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
             </div>
 
             <div class="logout-link-container">
                 <p class="align-center logout"><a href="/logout">Log out</a></p>
             </div>
         </div>
+        
         <div class="page-info-container">
             <div class="date-navigation-container">
                 <span><i class="fa fa-chevron-left"></i></span>

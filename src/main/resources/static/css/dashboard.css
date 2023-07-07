@@ -1,0 +1,32 @@
+
+
+.welcome-card{
+    padding: 2rem;
+    border-radius: 3rem;
+    background-color: var(--green);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.welcome-card h2{
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.fitness-info-container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 3rem;
+    margin-top: 3rem;
+}
+
+.fitness-info{
+    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 3rem;
+    padding-bottom: 10rem;
+}
+
+.fitness-info h3{
+    text-align: center;
+}
