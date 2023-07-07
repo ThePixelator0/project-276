@@ -1,13 +1,3 @@
-:root {
-    /* Colour Palette for Website */
-    --green: #05BD2D;
-    --dark-green: #3f663f;
-    --shadow: #ffffff78;
-    --black: #363636;
-    --white: #f9f9f9;
-}
-
-
 /* ======= Index styles ======= */
 
 h1 {
@@ -32,8 +22,8 @@ header {
 }
 
 .button { 
-    display: flex; /* this makes it a flex container */
-    justify-content: center; /* this centers the contents horizontally */
+    display: flex;
+    justify-content: center;
     align-items: center;
 
     font-size: large;

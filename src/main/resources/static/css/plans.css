@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-:root {
-    /* Colour Palette for Website */
-    --green: #05BD2D;
-    --dark-green: #3f663f;
-    --shadow: #ffffff78;
-    --black: #363636;
-    --white: #f9f9f9;
-}
-
 h1{
     font-family: 'Inter', sans-serif;
     font-weight: 500;
