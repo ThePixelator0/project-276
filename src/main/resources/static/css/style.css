@@ -26,9 +26,6 @@ html, body {
     display: flex;
 }
 
-.submit {
-    color: var(--green);
-}
 
 .content-main {
     height:100%;
