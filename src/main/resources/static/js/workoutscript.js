@@ -37,7 +37,7 @@ function goToNextDate() {
 }
 
 function fetchWorkoutsByMuscle(muscle) {
-  const apiKey = 'gpZ/zwU7vHvlHtZsnDHqFA==lJ4IKSI51VIxXbb8'; // Replace with your actual API key
+  const apiKey = 'gpZ/zwU7vHvlHtZsnDHqFA==lJ4IKSI51VIxXbb8';
   const url = `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`;
 
   // Make API request
@@ -106,8 +106,8 @@ function closeModal() {
 }
 
 // Event listeners for navigation arrows
-// prevArrow.addEventListener('click', goToPreviousDate);
-// nextArrow.addEventListener('click', goToNextDate);
+prevArrow.addEventListener('click', goToPreviousDate);
+nextArrow.addEventListener('click', goToNextDate);
 
 // Event listener for add workout button
 addWorkoutBtn.addEventListener('click', openModal);
