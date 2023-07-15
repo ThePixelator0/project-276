@@ -43,7 +43,7 @@
         <div class="page-info-container">
             <div class="date-navigation-container">
                 <span><i class="fa fa-chevron-left"></i></span>
-                <span>Today</span>
+                <span id="nutrition-date"></span>
                 <span><i class="fa fa-chevron-right"></i></span>
             </div>
             <div class="calorie-counter-container">
@@ -55,25 +55,57 @@
                 <div class="meals-bubble">
                     <h6>Breakfast</h6>
                     <span class="meal-item-count">0</span>
-                    <p>ADD FOOD</p>
+                    <div class="add-see-food-container">
+                        <p style="text-align:center">ADD FOOD</p>
+                        <p onclick="openBreakfastData()">SEE ALL BREAKFAST DATA</p>
+                    </div>
                 </div>
                 <div class="meals-bubble">
                     <h6>Lunch</h6>
                     <span class="meal-item-count">0</span>
-                    <p>ADD FOOD</p>
+                    <div class="add-see-food-container">
+                        <p style="text-align:center">ADD FOOD</p>
+                        <p onclick="openLunchData()">SEE ALL LUNCH DATA</p>
+                    </div>
                 </div>
                 <div class="meals-bubble">
                     <h6>Dinner</h6>
                     <span class="meal-item-count">0</span>
-                    <p>ADD FOOD</p>
+                    <div class="add-see-food-container">
+                        <p style="text-align:center">ADD FOOD</p>
+                        <p onclick="openDinnerData()">SEE ALL DINNER DATA</p>
+                    </div>
                 </div>
                 <div class="meals-bubble">
                     <h6>Snacks</h6>
                     <span class="meal-item-count">0</span>
-                    <p>ADD FOOD</p>
+                    <div class="add-see-food-container">
+                        <p style="text-align:center">ADD FOOD</p>
+                        <p onclick="openSnackData()">SEE ALL SNACK DATA</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="all-data-modal" id="breakfast-modal">
+            <span class="exit-modal" onclick="closeBreakfastData()">&#10006;</span>
+            <p>Hello World</p>
+        </div>
+
+        <div class="all-data-modal" id="lunch-modal">
+            <span class="exit-modal" onclick="closeLunchData()">&#10006;</span>
+            <p>Hello World</p>         
+        </div>
+
+        <div class="all-data-modal" id="dinner-modal">
+            <span class="exit-modal" onclick="closeDinnerData()">&#10006;</span>
+            <p>Hello World</p>
+        </div>
+
+        <div class="all-data-modal" id="snack-modal">
+            <span class="exit-modal" onclick="closeSnackData()">&#10006;</span>
+            <p>Hello World</p>   
+        </div>
     </div>
+    <script th:src="@{/js/nutritionscript.js}"></script>
 </body>
 </html>
