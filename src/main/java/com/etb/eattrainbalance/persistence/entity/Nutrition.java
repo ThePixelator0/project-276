@@ -19,6 +19,9 @@ public class Nutrition {
     @Column(name = "id")
     private Long id;
 
+    @Column(name="meal-type")
+    private String mealType;
+
     @Column(name = "product")
     private String product;
 
