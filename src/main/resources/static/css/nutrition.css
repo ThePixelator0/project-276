@@ -79,3 +79,28 @@
     color: var(--green);
     cursor: pointer;
 }
+
+.add-food-modal{
+    z-index: 10000;
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 3px solid black;
+    width: 50%;
+    padding: 5rem;
+    left: 25rem;
+    top: 16rem;
+    border-radius: 3rem;
+}
+
+.modal-title{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.add-food-input{
+    padding: 1rem 3rem 1rem 1.5rem;
+    border: 2px solid black;
+    width: 50%;
+    margin-left: 20%;
+}
