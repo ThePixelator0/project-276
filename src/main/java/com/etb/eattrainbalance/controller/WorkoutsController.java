@@ -10,6 +10,7 @@ import java.lang.Integer;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,9 +46,10 @@ public class WorkoutsController {
     public String getWorkoutsPage(Model model) {
         System.out.println("Getting all users");
         List<Workouts> workouts = workoutRepo.findAll();
-        
+        Long userID =  ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        int workoutsCount = workoutRepo.countByUserID(userID.intValue());
         model.addAttribute("work", workouts);
-        
+        model.addAttribute("workoutsCount", workoutsCount);
         return "workouts";
     }
 

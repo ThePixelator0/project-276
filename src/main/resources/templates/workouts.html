@@ -42,7 +42,7 @@
           <span class="nav-arrow" id="nextArrow"><i class="fa fa-chevron-right"></i></span>
         </div>
         <div class="remaining-workouts">
-          <span class="count" id="remainingCount">You have done {} workouts today.</span>
+          <span class="count" id="remainingCount">You have done <span th:text="${workoutsCount}"></span> workouts today.</span>
         </div>
         <div class="workout-list" id="workoutList">
           <!-- Workout items will be dynamically added here -->
