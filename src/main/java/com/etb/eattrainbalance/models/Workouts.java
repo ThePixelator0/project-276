@@ -55,4 +55,13 @@ public class Workouts {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+    
 }

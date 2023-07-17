@@ -67,4 +67,11 @@ public class WorkoutsController {
         response.setStatus(201);
         return "workouts";
     }
+
+    @PostMapping("/workouts/{id}/delete")
+    public String deleteWorkout(@PathVariable("id") int id) {
+        Workouts workout = workoutRepo.findById(id).orElse(null);
+        workoutRepo.delete(workout);
+        return "workouts";
+    }
 }

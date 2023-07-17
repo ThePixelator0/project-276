@@ -38,7 +38,7 @@ function goToNextDate() {
 
 function fetchWorkoutsByMuscle(muscle) {
   const apiKey = 'gpZ/zwU7vHvlHtZsnDHqFA==lJ4IKSI51VIxXbb8';
-  const url = `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}`;
+  const url = `https://api.api-ninjas.com/v1/exercises?name=${muscle}`;
 
   // Make API request
   fetch(url, {
@@ -93,6 +93,24 @@ function addWorkoutToBackend(workout, userId) {
   .catch(error => {
     console.error('Error adding workout to backend:', error);
   });
+}
+
+function deleteWorkout(workoutId) {
+  console.log(workoutId);
+  if (confirm('Are you sure you want to remove this workout?')) {
+      $.ajax({
+          type: 'POST',
+          url: '/workouts/' + workoutId + '/delete',
+          success: function () {
+              // Reload the page or perform any other action after successful deletion
+              location.reload();
+          },
+          error: function (xhr, status, error) {
+              // Handle the error, display a message, or perform any other action
+              console.log(error);
+          }
+      });
+  }
 }
 
 

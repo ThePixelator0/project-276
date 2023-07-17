@@ -52,7 +52,9 @@
                 <h5 th:text="${workout.workoutName}"></h5>
                 <p>Type: <span th:text="${workout.workoutType}"></span></p>
                 <p>Difficulty: <span th:text="${workout.workoutDifficulty}"></span></p>
+                <p>UID: <span th:text="${workout.uid}"></span></p>
               </div>
+              <div class="remove-workout" th:attr="onclick='deleteWorkout(\'' + ${workout.uid} + '\');'">X</div>
             </div>
           </div>
         </div>
