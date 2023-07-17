@@ -12,14 +12,16 @@ public class Workouts {
     private String workoutName;
     private String workoutType;
     private String workoutDifficulty;
+    private int userID;
 
     public Workouts() {
     }
 
-    public Workouts(String workoutName, String workoutType, String workoutDifficulty) {
+    public Workouts(String workoutName, String workoutType, String workoutDifficulty, int userID) {
         this.workoutName = workoutName;
         this.workoutType = workoutType;
         this.workoutDifficulty = workoutDifficulty;
+        this.userID = userID;
     }
     
     public String getWorkoutName() {
@@ -44,5 +46,13 @@ public class Workouts {
 
     public void setWorkoutDifficulty(String workoutDifficulty) {
         this.workoutDifficulty = workoutDifficulty;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }

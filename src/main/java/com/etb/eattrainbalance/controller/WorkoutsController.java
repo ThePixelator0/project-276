@@ -6,6 +6,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
+import java.lang.Integer;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.etb.eattrainbalance.models.Workouts;
+import com.etb.eattrainbalance.modal.security.UserPrincipal;
 import com.etb.eattrainbalance.models.WorkoutRepository;
+
+import com.etb.eattrainbalance.persistence.entity.User;
+import com.etb.eattrainbalance.persistence.repository.UserRepository;
+
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -30,12 +37,17 @@ public class WorkoutsController {
     @Autowired
     private WorkoutRepository workoutRepo;
 
+    @Autowired
+    private UserRepository userRepo;
+
+
     @GetMapping("/workouts")
     public String getWorkoutsPage(Model model) {
         System.out.println("Getting all users");
         List<Workouts> workouts = workoutRepo.findAll();
         
         model.addAttribute("work", workouts);
+        
         return "workouts";
     }
 
@@ -44,8 +56,12 @@ public class WorkoutsController {
         System.out.println("ADD workout");
         String newWorkoutName = newworkout.get("name");
         String newWorkoutType = newworkout.get("type");
-        String newWorkoutDifficulty = newworkout.get("difficulty");
-        workoutRepo.save(new Workouts(newWorkoutName, newWorkoutType, newWorkoutDifficulty));
+        String newWorkoutDifficulty = newworkout.get("difficulty"); 
+        int newWorkoutuid = Integer.parseInt(newworkout.get("uid"));
+        // String username = principal.getName();
+        // User user = userRepo.findByEmail("asdf");
+        // Long newWorkoutuid = user.getId();
+        workoutRepo.save(new Workouts(newWorkoutName, newWorkoutType, newWorkoutDifficulty, newWorkoutuid));
         response.setStatus(201);
         return "workouts";
     }

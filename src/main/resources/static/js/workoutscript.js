@@ -64,7 +64,8 @@ function fetchWorkoutsByMuscle(muscle) {
 
       // Add a click event listener to each workout item
       workoutItem.addEventListener('click', () => {
-        addWorkoutToBackend(workout);
+        const userId = document.getElementById('userId').textContent;
+        addWorkoutToBackend(workout, userId);
       });
 
       exerciseOptions.appendChild(workoutItem);
@@ -75,8 +76,8 @@ function fetchWorkoutsByMuscle(muscle) {
   });
 }
 
-function addWorkoutToBackend(workout) {
-  const url = `/workouts/add?name=${workout.name}&type=${workout.type}&difficulty=${workout.difficulty}`;
+function addWorkoutToBackend(workout, userId) {
+  const url = `/workouts/add?name=${workout.name}&type=${workout.type}&difficulty=${workout.difficulty}&uid=${userId}`;
 
   fetch(url, {
     method: 'POST'
@@ -93,6 +94,7 @@ function addWorkoutToBackend(workout) {
     console.error('Error adding workout to backend:', error);
   });
 }
+
 
 
 // Function to open the modal
