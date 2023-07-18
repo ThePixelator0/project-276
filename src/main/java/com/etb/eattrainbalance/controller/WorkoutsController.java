@@ -47,9 +47,9 @@ public class WorkoutsController {
         System.out.println("Getting all users");
         List<Workouts> workouts = workoutRepo.findAll();
         Long userID =  ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        int workoutsCount = workoutRepo.countByUserID(userID.intValue());
+        int workoutsCounter = workoutRepo.countByUserID(userID.intValue());
         model.addAttribute("work", workouts);
-        model.addAttribute("workoutsCount", workoutsCount);
+        model.addAttribute("workoutsCounter", workoutsCounter);
         return "workouts";
     }
 
@@ -60,20 +60,26 @@ public class WorkoutsController {
         String newWorkoutType = newworkout.get("type");
         String newWorkoutDifficulty = newworkout.get("difficulty"); 
         int newWorkoutuid = Integer.parseInt(newworkout.get("userid"));
-        // String username = principal.getName();
-        // User user = userRepo.findByEmail("asdf");
-        // Long newWorkoutuid = user.getId();
         workoutRepo.save(new Workouts(newWorkoutName, newWorkoutType, newWorkoutDifficulty, newWorkoutuid));
         response.setStatus(201);
         return "workouts";
     }
 
-    @PostMapping("/workouts/{uid}/delete")
-    public String deleteWorkout(@PathVariable("uid") int uid) {
-        System.out.println("workout being deleted");
-        Workouts workout = workoutRepo.findById(uid).orElse(null);
-        
-        workoutRepo.delete(workout);
-        return "workouts";
+    // @PostMapping("/workouts/{uid}/delete")
+    // public String deleteWorkout(@PathVariable("uid") String uid) {
+    //     System.out.println("workout being deleted");
+    //     Workouts workout = workoutRepo.findById(Integer.parseInt(uid)).orElse(null);
+    //     workoutRepo.delete(workout);
+    //     return "workouts";
+    // }
+
+    @PostMapping("/workouts/delete")
+    public String deleteWorkout(@RequestParam("workoutId") String workoutId, HttpServletResponse response){
+        System.out.println("delete workout " + workoutId);
+        workoutRepo.deleteById(Integer.parseInt(workoutId));
+        // int newUID = Integer.parseInt(newuser.get("uid"));
+        // studentRepo.deleteById(newUID);
+        // response.setStatus(201);
+        return "redirect:/workouts";
     }
 }

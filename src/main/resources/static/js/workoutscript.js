@@ -22,7 +22,14 @@ function displayDate() {
     const formattedDate = currentDate.toLocaleDateString(undefined, options);
     dateDisplay.textContent = formattedDate;
   }
-  filterWorkoutsByDate(currentDate.toISOString().split('T')[0]);
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const localDate = `${year}-${month}-${day}`;
+
+
+
+  filterWorkoutsByDate(localDate);
 }
 
 // Function to navigate to the previous date
@@ -98,23 +105,23 @@ function addWorkoutToBackend(workout, userId) {
   });
 }
 
-function deleteWorkout(workoutId) {
-  console.log(workoutId);
-  if (confirm('Are you sure you want to remove this workout?')) {
-      $.ajax({
-          type: 'POST',
-          url: '/workouts/' + workoutId + '/delete',
-          success: function () {
-              // Reload the page or perform any other action after successful deletion
-              location.reload();
-          },
-          error: function (xhr, status, error) {
-              // Handle the error, display a message, or perform any other action
-              console.log(error);
-          }
-      });
-  }
-}
+// function deleteWorkout(workoutId) {
+//   console.log(workoutId);
+//   if (confirm('Are you sure you want to remove this workout?')) {
+//       $.ajax({
+//           type: 'POST',
+//           url: '/workouts/' + workoutId + '/delete',
+//           success: function () {
+//               // Reload the page or perform any other action after successful deletion
+//               location.reload();
+//           },
+//           error: function (xhr, status, error) {
+//               // Handle the error, display a message, or perform any other action
+//               console.log(error);
+//           }
+//       });
+//   }
+// }
 
 function filterWorkoutsByDate(date) {
   const workoutItems = document.querySelectorAll('.workouts-added');

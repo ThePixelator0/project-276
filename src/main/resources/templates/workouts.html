@@ -52,9 +52,14 @@
                 <h5 th:text="${workout.workoutName}"></h5>
                 <p>Type: <span th:text="${workout.workoutType}"></span></p>
                 <p>Difficulty: <span th:text="${workout.workoutDifficulty}"></span></p>
-                <p>Date: <span id="workoutDate" th:text="${#dates.format(workout.createdat, 'yyyy-MM-dd')}"></span></p>
+                <p><span class="userid" id="workoutDate" th:text="${#dates.format(workout.createdat, 'yyyy-MM-dd')}"></span></p>
               </div>
-              <a href="#" class="remove-workout" th:attr="onclick='deleteWorkout(\'' + ${workout.uid} + '\');'">X</a>
+              <!-- <p>UID: <span th:text="${workout.uid}"></span></p> -->
+              <!-- <a href="#" class="remove-workout" th:attr="onclick='deleteWorkout(\'' + ${workout.uid} + '\');'">X</a> -->
+              <form action="/workouts/delete" method="post">
+                <input type="hidden" id="workoutId" name="workoutId" th:value="${workout.uid}"/>
+                <button type="submit" class="remove-workout" role="button">X</button>
+            </form>
             </div>
           </div>
         </div>
