@@ -22,18 +22,21 @@ function displayDate() {
     const formattedDate = currentDate.toLocaleDateString(undefined, options);
     dateDisplay.textContent = formattedDate;
   }
+  filterWorkoutsByDate(currentDate.toISOString().split('T')[0]);
 }
 
 // Function to navigate to the previous date
 function goToPreviousDate() {
   currentDate.setDate(currentDate.getDate() - 1);
   displayDate();
+  // filterWorkoutsByDate(currentDate.toISOString().split('T')[0]);
 }
 
 // Function to navigate to the next date
 function goToNextDate() {
   currentDate.setDate(currentDate.getDate() + 1);
   displayDate();
+  // filterWorkoutsByDate(currentDate.toISOString().split('T')[0]);
 }
 
 function fetchWorkoutsByMuscle(muscle) {
@@ -77,7 +80,7 @@ function fetchWorkoutsByMuscle(muscle) {
 }
 
 function addWorkoutToBackend(workout, userId) {
-  const url = `/workouts/add?name=${workout.name}&type=${workout.type}&difficulty=${workout.difficulty}&uid=${userId}`;
+  const url = `/workouts/add?name=${workout.name}&type=${workout.type}&difficulty=${workout.difficulty}&userid=${userId}`;
 
   fetch(url, {
     method: 'POST'
@@ -113,6 +116,25 @@ function deleteWorkout(workoutId) {
   }
 }
 
+function filterWorkoutsByDate(date) {
+  const workoutItems = document.querySelectorAll('.workouts-added');
+  let count = 0;
+
+  workoutItems.forEach((workoutItem) => {
+    const workoutDateElement = workoutItem.querySelector('#workoutDate');
+    const workoutDate = workoutDateElement.textContent;
+    
+    if (workoutDate === date) {
+      workoutItem.style.display = 'block';
+      count++;
+    } else {
+      workoutItem.style.display = 'none';
+    }
+
+    const workoutsCount = document.getElementById('remainingCount');
+    workoutsCount.textContent = `You have done ${count} workout(s).`;
+  });
+}
 
 
 // Function to open the modal

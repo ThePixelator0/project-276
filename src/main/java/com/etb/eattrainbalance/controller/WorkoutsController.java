@@ -59,7 +59,7 @@ public class WorkoutsController {
         String newWorkoutName = newworkout.get("name");
         String newWorkoutType = newworkout.get("type");
         String newWorkoutDifficulty = newworkout.get("difficulty"); 
-        int newWorkoutuid = Integer.parseInt(newworkout.get("uid"));
+        int newWorkoutuid = Integer.parseInt(newworkout.get("userid"));
         // String username = principal.getName();
         // User user = userRepo.findByEmail("asdf");
         // Long newWorkoutuid = user.getId();
@@ -68,9 +68,11 @@ public class WorkoutsController {
         return "workouts";
     }
 
-    @PostMapping("/workouts/{id}/delete")
-    public String deleteWorkout(@PathVariable("id") int id) {
-        Workouts workout = workoutRepo.findById(id).orElse(null);
+    @PostMapping("/workouts/{uid}/delete")
+    public String deleteWorkout(@PathVariable("uid") int uid) {
+        System.out.println("workout being deleted");
+        Workouts workout = workoutRepo.findById(uid).orElse(null);
+        
         workoutRepo.delete(workout);
         return "workouts";
     }

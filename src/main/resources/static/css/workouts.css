@@ -73,7 +73,7 @@
 .workout-name,
 .workout-type,
 .workout-difficulty {
-  font-size: 12px;
+  font-size: 13px;
   text-align: center;
 }
 
@@ -81,9 +81,9 @@
   position: absolute;
   top: 5px;
   right: 5px;
-  width: 20px;
-  height: 20px;
-  background-color: #ff0000;
+  width: 7px;
+  height: 7px;
+  background-color: #b0b0b0;
   color: #ffffff;
   font-weight: bold;
   border-radius: 50%;
@@ -94,7 +94,7 @@
 }
 
 .remove-workout:hover {
-  background-color: #cc0000;
+  background-color: #ff0000;
 }
 
 .add-workout {
@@ -174,7 +174,7 @@
   justify-content: space-between;
 }
 
-.uid {
+.userid {
   display: none;
 }
 

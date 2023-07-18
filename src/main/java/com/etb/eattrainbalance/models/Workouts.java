@@ -2,6 +2,8 @@ package com.etb.eattrainbalance.models;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
 @Table(name="workouts")
 
@@ -12,7 +14,10 @@ public class Workouts {
     private String workoutName;
     private String workoutType;
     private String workoutDifficulty;
-    private int userID;
+    private int userID; 
+    
+    @Column(name = "createdat", insertable = false) // Exclude from insert statement
+    private Timestamp createdat;
 
     public Workouts() {
     }
@@ -63,5 +68,13 @@ public class Workouts {
     public void setUid(int uid) {
         this.uid = uid;
     }
+
+    public Timestamp getCreatedat() {
+        return createdat;
+    }
+
+    // public void setCreatedat(Timestamp createdat) {
+    //     this.createdat = createdat;
+    // }
     
 }

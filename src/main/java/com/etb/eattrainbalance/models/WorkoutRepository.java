@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface WorkoutRepository extends JpaRepository<Workouts,Integer> {
     List<Workouts> findByWorkoutType(String workoutType);
-
+    
     int countByUserID(Integer userID);
+
+    void deleteByUid(int uid);
 }
