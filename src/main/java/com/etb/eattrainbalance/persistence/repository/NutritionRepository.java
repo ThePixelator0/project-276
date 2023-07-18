@@ -8,5 +8,5 @@ import java.util.List;
 
 @Controller
 public interface NutritionRepository extends JpaRepository<Nutrition, Long> {
-    List<Nutrition> findByUserId(Long userId);
+    List<Nutrition> findByUserIdAndMealType(Long userId, String mealType);
 }

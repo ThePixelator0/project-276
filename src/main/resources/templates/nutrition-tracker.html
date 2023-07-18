@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="page-container">
-        <div class="vertical-navigation">
+        <div class="vertical-navigation" id="vertical-navigation">
             <div class="link-container">
                 <p class="align-center unselected"><a href="/dashboard">Home</a></p>
             </div>
@@ -40,7 +40,7 @@
             </div>
         </div>
         
-        <div class="page-info-container">
+        <div class="page-info-container" id="page-info-container">
             <div class="date-navigation-container">
                 <span><i class="fa fa-chevron-left"></i></span>
                 <span id="nutrition-date"></span>
@@ -58,7 +58,7 @@
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-breakfast-modal')" style="text-align:center">ADD FOOD</p>
 
-                        <p onclick="openNutritionData('breakfast-modal')">SEE ALL BREAKFAST DATA</p>
+                        <p th:onclick="|getNutritionInfo('Breakfast', ${#authentication.principal.id}, 'breakfast-modal', 'breakfast-data')|">SEE ALL BREAKFAST DATA</p>
                     </div>
                 </div>
                 <div class="meals-bubble">
@@ -66,7 +66,7 @@
                     <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-lunch-modal')" style="text-align:center">ADD FOOD</p>
-                        <p onclick="openNutritionData('lunch-modal')">SEE ALL LUNCH DATA</p>
+                        <p th:onclick="|getNutritionInfo('Lunch', ${#authentication.principal.id}, 'lunch-modal', 'lunch-data')|">SEE ALL LUNCH DATA</p>
                     </div>
                 </div>
                 <div class="meals-bubble">
@@ -74,7 +74,7 @@
                     <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-dinner-modal')" style="text-align:center">ADD FOOD</p>
-                        <p onclick="openNutritionData('dinner-modal')">SEE ALL DINNER DATA</p>
+                        <p th:onclick="|getNutritionInfo('Dinner', ${#authentication.principal.id}, 'dinner-modal', 'dinner-data')|">SEE ALL DINNER DATA</p>
                     </div>
                 </div>
                 <div class="meals-bubble">
@@ -82,7 +82,7 @@
                     <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-snack-modal')" style="text-align:center">ADD FOOD</p>
-                        <p onclick="openNutritionData('snack-modal')">SEE ALL SNACK DATA</p>
+                        <p th:onclick="|getNutritionInfo('Snack', ${#authentication.principal.id}, 'snack-modal', 'snack-data')|">SEE ALL SNACK DATA</p>
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
             <form action="/api/nutrition/add" method="post">
                 <h3 class="modal-title">Add Breakfast Item</h3>
 
-                <input type="hidden" name="meal-type" value="breakfast"/>
+                <input type="hidden" name="meal-type" value="Breakfast"/>
 
                 <input type="hidden" name="user-id" th:value="${#authentication.principal.id}"/>
 
@@ -112,7 +112,7 @@
             <span class="exit-modal" onclick="closeNutritionData('add-lunch-modal')">&#10006;</span>
             <form action="/api/nutrition/add" method="post">
                 <h3 class="modal-title">Add Lunch Item</h3>
-                <input type="hidden" name="meal-type" value="lunch"/>
+                <input type="hidden" name="meal-type" value="Lunch"/>
 
                 <input type="hidden" name="user-id" th:value="${#authentication.principal.id}"/>
 
@@ -171,24 +171,81 @@
 
         <div class="all-data-modal" id="breakfast-modal">
             <span class="exit-modal" onclick="closeNutritionData('breakfast-modal')">&#10006;</span>
-            <p>Breakfast</p>
+            <h1>Your Breakfast Data</h1>
+            <div class="display-nutrition-data-column">
+                <p><b>Food ID</b></p>
+                <p><b>Date</b></p>
+                <p><b>Meal Type</b></p>
+                <p><b>Food</b></p>
+                <p><b>Protein (grams)</b></p>
+                <p><b>Calories</b></p>
+                <p><b>Fat (grams)</b></p>
+            </div>
+           
+            <div class="display-nutrition-data-column" id="breakfast-data">
+
+            </div>
+            
         </div>
 
         <div class="all-data-modal" id="lunch-modal">
             <span class="exit-modal" onclick="closeNutritionData('lunch-modal')">&#10006;</span>
-            <p>Lunch</p>         
+            <h1>Your Lunch Data</h1>
+            <div class="display-nutrition-data-column">
+                <p><b>Food ID</b></p>
+                <p><b>Date</b></p>
+                <p><b>Meal Type</b></p>
+                <p><b>Food</b></p>
+                <p><b>Protein (grams)</b></p>
+                <p><b>Calories</b></p>
+                <p><b>Fat (grams)</b></p>
+            </div>
+           
+            <div class="display-nutrition-data-column" id="lunch-data">
+
+            </div>
+                  
         </div>
 
         <div class="all-data-modal" id="dinner-modal">
             <span class="exit-modal" onclick="closeNutritionData('dinner-modal')">&#10006;</span>
-            <p>Dinner</p>
+            <h1>Your Dinner Data</h1>
+            <div class="display-nutrition-data-column">
+                <p><b>Food ID</b></p>
+                <p><b>Date</b></p>
+                <p><b>Meal Type</b></p>
+                <p><b>Food</b></p>
+                <p><b>Protein (grams)</b></p>
+                <p><b>Calories</b></p>
+                <p><b>Fat (grams)</b></p>
+            </div>
+           
+            <div class="display-nutrition-data-column" id="dinner-data">
+
+            </div>
+            
         </div>
 
         <div class="all-data-modal" id="snack-modal">
             <span class="exit-modal" onclick="closeNutritionData('snack-modal')">&#10006;</span>
-            <p>Snacks</p>   
+            <h1>Your Snack Data</h1>
+            <div class="display-nutrition-data-column">
+                <p><b>Food ID</b></p>
+                <p><b>Date</b></p>
+                <p><b>Meal Type</b></p>
+                <p><b>Food</b></p>
+                <p><b>Protein (grams)</b></p>
+                <p><b>Calories</b></p>
+                <p><b>Fat (grams)</b></p>
+            </div>
+           
+            <div class="display-nutrition-data-column" id="snack-data">
+
+            </div>
+            
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/nutritionscript.js}"></script>
 </body>
 </html>

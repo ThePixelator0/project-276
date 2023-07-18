@@ -12,6 +12,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -80,12 +81,12 @@ public class NutritionController {
     }
 
     // Endpoint to retrieve all Nutrition entries
-    @GetMapping("/allNutrition")
+    @GetMapping("/allNutrition/{mealType}/{userId}")
     //change to return a list
-    public String getAllNutrition(@PathVariable Long userId){
-        List<Nutrition> nutritions = nutritionRepository.findByUserId(userId);
-        System.out.println(nutritions);
-        return "Done";
+    public List getAllNutrition(@PathVariable String mealType, @PathVariable Long userId, Model model){
+        List<Nutrition> nutritions = nutritionRepository.findByUserIdAndMealType(userId, mealType);
+        
+        return nutritions;
     }
 
     // Endpoint to update a Nutrition entry by ID
