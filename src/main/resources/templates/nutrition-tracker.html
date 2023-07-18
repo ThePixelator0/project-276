@@ -90,41 +90,82 @@
 
         <div class="add-food-modal" id="add-breakfast-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-breakfast-modal')">&#10006;</span>
-            <form action="" method="post">
+            <form action="/api/nutrition/add" method="post">
                 <h3 class="modal-title">Add Breakfast Item</h3>
+
                 <input type="hidden" name="meal-type" value="breakfast"/>
+
                 <input type="hidden" name="user-id" th:value="${#authentication.principal.id}"/>
-                <input type="text" name="breakfast-food" placeholder="Breakfast" class="add-food-input"/>
+
+                <input type="hidden" name="food-code" id="breakfast-food-code" value=""/>
+
+                <input list="breakfast-food-options" name="food-item" placeholder="Breakfast" class="add-food-input" onkeyup="searchFoods(this.value, 'breakfast-food-options', 'breakfast-food-code')" required/>
+                
+                <datalist id="breakfast-food-options">
+                    
+                </datalist>
+                <button class="add-food-button" type="submit">Add</button>
             </form>
         </div>
 
         <div class="add-food-modal" id="add-lunch-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-lunch-modal')">&#10006;</span>
-            <form action="" method="post">
+            <form action="/api/nutrition/add" method="post">
                 <h3 class="modal-title">Add Lunch Item</h3>
                 <input type="hidden" name="meal-type" value="lunch"/>
+
                 <input type="hidden" name="user-id" th:value="${#authentication.principal.id}"/>
-                <input type="text" name="lunch-food" placeholder="Lunch" class="add-food-input"/>
+
+                <input type="hidden" name="food-code" id="lunch-food-code" value=""/>
+
+                <input list="lunch-food-options" name="food-item" placeholder="Lunch" class="add-food-input" onkeyup="searchFoods(this.value, 'lunch-food-options', 'lunch-food-code')" required/>
+                
+                <datalist id="lunch-food-options">
+                    
+                </datalist>
+
+                <button class="add-food-button" type="submit">Add</button>
             </form>
         </div>
 
         <div class="add-food-modal" id="add-dinner-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-dinner-modal')">&#10006;</span>
-            <form action="" method="post">
+            <form action="/api/nutrition/add" method="post">
                 <h3 class="modal-title">Add Dinner Item</h3>
+
                 <input type="hidden" name="meal-type" value="Dinner"/>
+
                 <input type="hidden" name="user-id" th:value="${#authentication.principal.id}"/>
-                <input type="text" name="dinner-food" placeholder="Dinner" class="add-food-input"/>
+
+                <input type="hidden" name="food-code" id="dinner-food-code" value=""/>
+
+                <input list="dinner-food-options" name="food-item" placeholder="Dinner" class="add-food-input" onkeyup="searchFoods(this.value, 'dinner-food-options', 'dinner-food-code')" required/>
+                
+                <datalist id="dinner-food-options">
+                    
+                </datalist>
+
+                <button class="add-food-button" type="submit">Add</button>
             </form>
         </div>
 
         <div class="add-food-modal" id="add-snack-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-snack-modal')">&#10006;</span>
-            <form action="" method="post">
+            <form action="/api/nutrition/add" method="post">
                 <h3 class="modal-title">Add Snack Item</h3>
                 <input type="hidden" name="meal-type" value="Snack"/>
+
                 <input type="hidden" name="user-id" th:value="${#authentication.principal.id}"/>
-                <input type="text" name="snack-food" placeholder="Snack" class="add-food-input"/>
+
+                <input type="hidden" name="food-code" id="snack-food-code" value=""/>
+
+                <input list="snack-food-options" name="food-item" placeholder="Snack" class="add-food-input" onkeyup="searchFoods(this.value, 'snack-food-options', 'snack-food-code')" required/>
+                
+                <datalist id="snack-food-options">
+                    
+                </datalist>
+
+                <button class="add-food-button" type="submit">Add</button>
             </form>
         </div>
 

@@ -26,19 +26,18 @@ public class Nutrition {
     private String product;
 
     @Column(name = "calorie")
-    private Double calorie;
+    private String calorie;
 
     @Column(name = "protein")
-    private Double protein;
+    private String protein;
 
     @Column(name = "fat")
-    private Double fat;
+    private String fat;
 
     @CreationTimestamp
     @Column(name = "creation-date-time")
     private LocalDateTime creationDateTime; // The date and time when this entry was created
 
-    @ManyToOne
-    @JoinColumn(name = "user-id")
-    private User user; // The user associated with this nutrition entry
+    @Column(name = "user-id")
+    private Long userId; // The user associated with this nutrition entry
 }

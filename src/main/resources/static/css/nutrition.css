@@ -104,3 +104,15 @@
     width: 50%;
     margin-left: 20%;
 }
+
+.add-food-button{
+    margin-left: 20%;
+    padding: 1rem;
+    background-color: var(--green);
+    color: white;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    width: 10rem;
+    cursor: pointer;
+    border: none;
+}

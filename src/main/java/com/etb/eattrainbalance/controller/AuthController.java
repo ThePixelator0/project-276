@@ -29,6 +29,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
+       
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setName(name);
         registerRequest.setEmail(email);
@@ -42,6 +43,7 @@ public class AuthController {
 
     @PostMapping("/register-admin")
     public ResponseEntity<Void> registerAdmin(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
+        
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setName(name);
         registerRequest.setEmail(email);
@@ -56,6 +58,7 @@ public class AuthController {
     // This method handles HTTP POST requests to /api/auth/login for user login.
     @PostMapping("/login")
     public ResponseEntity<Void> login(@Valid @RequestParam("email") String email, @RequestParam("password") String password, HttpServletRequest request) {
+        
         LoginRequest loginRequest = new LoginRequest();
         loginRequest.setEmail(email);
         loginRequest.setPassword(password);
