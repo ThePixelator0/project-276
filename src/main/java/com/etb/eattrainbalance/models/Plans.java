@@ -15,17 +15,27 @@ public class Plans {
     private int uid;
 
     private String title;
+    private int userID;
     // add lists of days with each day of lists of food
 
     public Plans() {
     }
 
-    public Plans(String title) {
+    public Plans(String title, int userID) {
         this.title = title;
+        this.userID = userID;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public void setTitle(String title) {

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import com.etb.eattrainbalance.models.Plans;
 import com.etb.eattrainbalance.models.PlansRepository;
+import com.etb.eattrainbalance.persistence.repository.UserRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -21,6 +22,9 @@ public class PlansController {
 
     @Autowired
     private PlansRepository plansRepo;
+
+    @Autowired
+    private UserRepository userRepo;
 
     @GetMapping("/plans")
     public String getPlansPage(Model model) {
@@ -37,11 +41,12 @@ public class PlansController {
         System.out.println("add new plan");
         
         String newtitle = newplan.get("title");
+        int newPlanUid = Integer.parseInt(newplan.get("userId"));
 
         // add error checking
 
 
-        plansRepo.save(new Plans("My Meal Plan #1"));
+        plansRepo.save(new Plans("My Meal Plan #1",newPlanUid));
         response.setStatus(201);
         return"redirect:/plans";
     }
