@@ -42,6 +42,7 @@
 
                 <form action="/plans/add" method="post" style="margin-left: auto;">
                     <input type="hidden" id="planTitle" name="planTitle" value="My Meal Plan#1"/>
+                    <input type="hidden" id="userId" name="userId" th:value="${#authentication.getPrincipal().getId}"></input>
                     <button type="submit" class="button-29" role="button">Create Plan</button>
                 </form>
 
@@ -65,11 +66,11 @@
                         <button class="delete">Delete</button>
                     </div> -->
                 <!-- </div> -->
-                <div class="item" th:each="plans:${plans}">
+                <div class="item" th:each="plans:${plans}" th:if="${plans.userID == #authentication.principal.id}">
                     <div class="bar">
                         <h2 class="heading" th:text = "${plans.title}"></h2>
                         <!-- Dynamically adjust -->
-                        <div class="week">Week of: July 10th</div>
+                        <div class="week">Week of: July 17th</div>
                     </div>
                     <div class="week-contain">
                         <div class="day">Monday
