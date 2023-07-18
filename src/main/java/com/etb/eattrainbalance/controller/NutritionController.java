@@ -10,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +33,7 @@ public class NutritionController {
     private NutritionRepository nutritionRepository;
     // Endpoint to create a new Nutrition entry
     @PostMapping("/add")
-    public String addNutrition(@RequestParam Map<String, String> foodData, HttpServletResponse response) {
+    public ResponseEntity<Void> addNutrition(@RequestParam Map<String, String> foodData, HttpServletResponse response) {
         RestTemplate restTemplate = new RestTemplate();
 
         String foodCode = foodData.get("food-code");
@@ -60,7 +62,9 @@ public class NutritionController {
             //protein(g), fat(g), calories
 
         } catch(IOException e){
-            return e.toString();
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Location", e.toString());
+            return new ResponseEntity<>(headers, HttpStatus.FOUND);
         }
 
         String mealType = foodData.get("meal-type");
@@ -77,7 +81,9 @@ public class NutritionController {
         nutrition.setCreationDateTime(LocalDateTime.now());
         nutritionRepository.save(nutrition);
 
-        return "redirect:/nutrition";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "/nutrition");
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 
     // Endpoint to retrieve all Nutrition entries
