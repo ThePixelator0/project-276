@@ -48,25 +48,33 @@
                 <div class="fitness-info">
                     <h3>Nutrition Summary</h3>
                     <div class="fitness-summary">
-
-                        <p>Aspect 1: 2000</p>
-                        <p>Aspect 2: </p>
-                        <p>Aspect 3: text</p>
-                        <p>Aspect 4: WAHOO</p>
-                        <p>Aspect 5: LEGNTH TEST LENGTH TEST LENGTH TEST</p>
-                        <p>Aspect 6: https://cmpt276-project.onrender.com</p>
+                        <span class="count" >Daily Calories Remaining: 2000</span>
+                        <span class="count" >Daily Goal Progress: 0%</span>
+                        <button>Add Food</button>
                     </div>
                 </div>
                 <div class="fitness-info">
                     <h3>Workout Summary</h3>
                     <div class="fitness-summary">
-                        <span class="count" id="remainingCount">You have done <span th:text="${workoutsCounter}"></span> workout(s) all time! <br> Keep going!</span>
+                        <span class="count" id="remainingCount">
+                            You have done 
+                            <span th:text="${workoutsCounter}"></span> 
+                            workout(s) all time! <br> Keep going!
+                        </span>
+                        <span class="count">
+                            Daily Goal Progress: 
+                            <span th:text="${#numbers.formatDecimal(workoutPercentage, 1, 2)}"></span> 
+                            %
+                        </span>
+                        <button>Add Workout</button>
                     </div>
                 </div>
                 <div class="fitness-info">
                     <h3>Meal Plan Summary</h3>
                     <div class="fitness-summary">
-
+                        <span class="count" >Next Meal: Lunch</span>
+                        <span class="count" >Daily Goal Progress: 0%</span>
+                        <button>View Lunch Receipe</button>
                     </div>
                 </div>
             </div>
