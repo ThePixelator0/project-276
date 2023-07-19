@@ -36,17 +36,22 @@ public class PlansController {
         return "plans";
     }
 
+    @GetMapping("/createplan")
+    public String createPlanPage(){
+        return"createplan";
+    }
+
     @PostMapping("/plans/add")
     public String addPlan(@RequestParam Map<String, String> newplan, HttpServletResponse response){
         System.out.println("add new plan");
         
-        String newtitle = newplan.get("title");
+        String newtitle = newplan.get("planTitle");
         int newPlanUid = Integer.parseInt(newplan.get("userId"));
 
         // add error checking
 
 
-        plansRepo.save(new Plans("My Meal Plan #1",newPlanUid));
+        plansRepo.save(new Plans(newtitle,newPlanUid));
         response.setStatus(201);
         return"redirect:/plans";
     }
