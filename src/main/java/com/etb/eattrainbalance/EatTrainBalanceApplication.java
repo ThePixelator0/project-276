@@ -17,8 +17,6 @@ public class EatTrainBalanceApplication {
         // Launches the Spring Boot application.
         // The run method returns an ApplicationContext where all the Spring-managed beans are registered.
         // The args parameter can be used to accept command-line arguments.
-       
-
         SpringApplication.run(EatTrainBalanceApplication.class, args);
     }
 }
