@@ -29,7 +29,6 @@ public class SecurityConfig {
             "/api/auth/login",
             "/api/auth/register",
             "/api/auth/register-admin",
-            "/api/nutrition/add",
             // -- Front-End Pages
             "/",
             "/login",
