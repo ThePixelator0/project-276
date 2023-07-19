@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name="workouts")
+@Table(name = "workouts")
 
 public class Workouts {
     @Id
@@ -14,21 +14,31 @@ public class Workouts {
     private String workoutName;
     private String workoutType;
     private String workoutDifficulty;
-    private int userID; 
-    
+    private int userID;
+    private int workoutGoal;
+
     @Column(name = "createdat", insertable = false) // Exclude from insert statement
     private Timestamp createdat;
 
     public Workouts() {
     }
 
-    public Workouts(String workoutName, String workoutType, String workoutDifficulty, int userID) {
+    public Workouts(String workoutName, String workoutType, String workoutDifficulty, int userID, int workoutGoal) {
         this.workoutName = workoutName;
         this.workoutType = workoutType;
         this.workoutDifficulty = workoutDifficulty;
         this.userID = userID;
+        this.workoutGoal = workoutGoal;
     }
-    
+
+    public int getWorkoutGoal() {
+        return workoutGoal;
+    }
+
+    public void setWorkoutGoal(int workoutGoal) {
+        this.workoutGoal = workoutGoal;
+    }
+
     public String getWorkoutName() {
         return workoutName;
     }
@@ -74,7 +84,7 @@ public class Workouts {
     }
 
     // public void setCreatedat(Timestamp createdat) {
-    //     this.createdat = createdat;
+    // this.createdat = createdat;
     // }
-    
+
 }

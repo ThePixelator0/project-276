@@ -63,7 +63,9 @@ public class WorkoutsController {
         String newWorkoutType = newworkout.get("type");
         String newWorkoutDifficulty = newworkout.get("difficulty");
         int newWorkoutuid = Integer.parseInt(newworkout.get("userid"));
-        workoutRepo.save(new Workouts(newWorkoutName, newWorkoutType, newWorkoutDifficulty, newWorkoutuid));
+        int newWorkoutGoal = Integer.parseInt(newworkout.get("goal"));
+        workoutRepo.save(
+                new Workouts(newWorkoutName, newWorkoutType, newWorkoutDifficulty, newWorkoutuid, newWorkoutGoal));
         response.setStatus(201);
         return "workouts";
     }

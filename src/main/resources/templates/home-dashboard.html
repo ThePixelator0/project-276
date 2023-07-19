@@ -50,7 +50,7 @@
                     <div class="fitness-summary">
                         <span class="count" >Daily Calories Remaining: 2000</span>
                         <span class="count" >Daily Goal Progress: 0%</span>
-                        <button>Add Food</button>
+                        <a href="/nutrition" class="button">Add Food</a>
                     </div>
                 </div>
                 <div class="fitness-info">
@@ -63,10 +63,10 @@
                         </span>
                         <span class="count">
                             Daily Goal Progress: 
-                            <span th:text="${#numbers.formatDecimal(workoutPercentage, 1, 2)}"></span> 
-                            %
+                            <!-- <span th:text="${#numbers.formatDecimal(workoutPercentage, 1, 2)}"></span>  -->
+                            0%
                         </span>
-                        <button>Add Workout</button>
+                        <a href="/workouts" class="button">Add Workout</a>
                     </div>
                 </div>
                 <div class="fitness-info">
@@ -74,7 +74,7 @@
                     <div class="fitness-summary">
                         <span class="count" >Next Meal: Lunch</span>
                         <span class="count" >Daily Goal Progress: 0%</span>
-                        <button>View Lunch Receipe</button>
+                        <a href="/plans" class="button">View Receipes</a>
                     </div>
                 </div>
             </div>
