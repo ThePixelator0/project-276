@@ -15,7 +15,7 @@ public class Workouts {
     private String workoutType;
     private String workoutDifficulty;
     private int userID;
-    private int workoutGoal;
+    // private int workoutGoal;
 
     @Column(name = "createdat", insertable = false) // Exclude from insert statement
     private Timestamp createdat;
@@ -23,21 +23,21 @@ public class Workouts {
     public Workouts() {
     }
 
-    public Workouts(String workoutName, String workoutType, String workoutDifficulty, int userID, int workoutGoal) {
+    public Workouts(String workoutName, String workoutType, String workoutDifficulty, int userID) { //workoutgoal
         this.workoutName = workoutName;
         this.workoutType = workoutType;
         this.workoutDifficulty = workoutDifficulty;
         this.userID = userID;
-        this.workoutGoal = workoutGoal;
+        // this.workoutGoal = workoutGoal;
     }
 
-    public int getWorkoutGoal() {
-        return workoutGoal;
-    }
+    // public int getWorkoutGoal() {
+    //     return workoutGoal;
+    // }
 
-    public void setWorkoutGoal(int workoutGoal) {
-        this.workoutGoal = workoutGoal;
-    }
+    // public void setWorkoutGoal(int workoutGoal) {
+    //     this.workoutGoal = workoutGoal;
+    // }
 
     public String getWorkoutName() {
         return workoutName;
