@@ -47,3 +47,18 @@ draggables.forEach(draggable => {
 //     event.preventDefault();
 //     return false;
 // });
+
+/*get and add data*/
+function openNutritionData(modalId, plansId){
+  document.getElementById(modalId).style.display = "block"
+  document.getElementById("planId").value = plansId;
+  console.log(plansId);
+  // document.getElementById("page-info-container").style.display = "none"
+  // document.getElementById("vertical-navigation").style.display = "none"
+}
+
+function closeNutritionData(modalId){
+  document.getElementById(modalId).style.display = "none"
+  document.getElementById("page-info-container").style.display = "block"
+  document.getElementById("vertical-navigation").style.display = "block"
+}

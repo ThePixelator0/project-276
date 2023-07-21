@@ -94,8 +94,13 @@ h2{
     margin-bottom: 10px;
 }
 
+.button-container{
+    display: flex;
+    justify-content: space-between;
+}
+
 .add-meal{
-    margin-left: 50px;
+    margin-right: 20px;
 }
 
 .space{
@@ -301,4 +306,30 @@ a {
 
 .inputtitle{
     margin: 50px;
+}
+
+.exit-modal{
+    float: right;
+    margin-bottom: 5rem;
+    font-size: 1.25rem;
+    color: var(--green);
+    cursor: pointer;
+}
+
+.add-food-modal{
+    z-index: 10000;
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 3px solid black;
+    width: 50%;
+    padding: 5rem;
+    left: 18rem;
+    top: 13rem;
+    border-radius: 3rem;
+}
+
+.delete-meal{
+    display:inline-block;
+    margin-left:50px;
 }

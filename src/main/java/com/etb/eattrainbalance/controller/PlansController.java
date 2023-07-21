@@ -1,5 +1,6 @@
 package com.etb.eattrainbalance.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
+import com.etb.eattrainbalance.models.Food;
 import com.etb.eattrainbalance.models.Plans;
 import com.etb.eattrainbalance.models.PlansRepository;
 import com.etb.eattrainbalance.persistence.repository.UserRepository;
@@ -47,11 +49,12 @@ public class PlansController {
         
         String newtitle = newplan.get("planTitle");
         int newPlanUid = Integer.parseInt(newplan.get("userId"));
+        List<Food> food = new ArrayList<>();
 
         // add error checking
 
 
-        plansRepo.save(new Plans(newtitle,newPlanUid));
+        plansRepo.save(new Plans(newtitle,newPlanUid,food));
         response.setStatus(201);
         return"redirect:/plans";
     }

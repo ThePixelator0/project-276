@@ -6,12 +6,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/plans.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script th:src="@{/js/planscript.js}" defer></script>
     <title>Meal Plans</title>
 </head>
 <body>
 
     <div class="page-container">
-        <div class="vertical-navigation">
+        <div class="vertical-navigation" id="vertical-navigation">
             <div class="link-container">
                 <p class="align-center unselected"><a href="/dashboard">Home</a></p>
             </div>
@@ -36,20 +37,49 @@
                 <p class="align-center logout"><a href="/logout">Log out</a></p>
             </div>
         </div>
-        <div class="page-info-container">        
+        <div class="page-info-container" id="page-info-container">        
             <div class="bar">
                 <h1>My Meal Plans</h1>
 
                 <form action="/plans/add" method="post" style="margin-left: auto;">
-                    <input type="hidden" id="planTitle" name="planTitle" value="My Meal Plan#1"/>
+                    <input type="text" id="planTitle" name="planTitle" placeholder="Meal Plan Title"/>
                     <input type="hidden" id="userId" name="userId" th:value="${#authentication.getPrincipal().getId}"></input>
                     <button type="submit" class="button-29" role="button">Create Plan</button>
                 </form>
+                <div class="add-food-modal" id="add-breakfast-modal" style="display: none;">
+                    <span class="exit-modal" onclick="closeNutritionData('add-breakfast-modal')">&#10006;</span>
+                    <form action="/submitFood" method="post">
+                        <label for="foodName">Food Name:</label>
+                        <input type="text" id="foodName" name="foodName" required>
+                        
+                        <label for="foodColor">Food Color:</label>
+                        <input type="text" id="foodColor" name="foodColor" placeholder="red,#77DD77,..." required>
+    
+                        <label for="foodDay">Food Day:</label>
+                        <input type="text" id="foodDay" name="foodDay" placeholder="monday,tuesday,..." required>
+    
+                        <input type="hidden" id="planId" name="planId"></input>
+                        
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
                 <!-- <a href="/createplan" style="margin-left: auto; margin-right: 50px;">
                     <button type="submit" class="button-29" role="button">Create Plan</button>
                 </a> -->
-                
+                <!-- <form action="/submitFood" method="post">
+                    <label for="foodName">Food Name:</label>
+                    <input type="text" id="foodName" name="foodName" required>
+                    
+                    <label for="foodColor">Food Color:</label>
+                    <input type="text" id="foodColor" name="foodColor" required>
 
+                    <label for="foodDay">Food Day:</label>
+                    <input type="text" id="foodDay" name="foodDay" required>
+
+                    <input type="hidden" id="planId" name="planId" value="2"></input>
+                    
+                    <input type="submit" value="Submit">
+                </form> -->
             </div>
             <div class="line"></div>
             
@@ -73,30 +103,62 @@
                 <div class="item" th:each="plans:${plans}" th:if="${plans.userID == #authentication.principal.id}">
                     <div class="bar">
                         <h2 class="heading" th:text = "${plans.title}"></h2>
+                        <p th:text = "${plans.uid}"></p>
                         <!-- Dynamically adjust -->
                         <div class="week">Week of: July 17th</div>
                     </div>
                     <div class="week-contain">
                         <div class="day">Monday
+                            <div class="food-container">
+                                <!-- <div th:each="food : ${plans.foods}"> -->
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'monday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <!-- </div> -->
+                            </div>
                             <!-- <div class="meal">Breakfast: Cereal</div>
                             <div class="meal">Breakfast: Cereal</div>
                             <div class="meal">Breakfast: Cereal</div>
                             <div class="meal">Breakfast: Cereal</div> -->
                         </div>
-                        <div class="day">Tuesday</div>
-                        <div class="day">Wednesday</div>
-                        <div class="day">Thursday</div>
-                        <div class="day">Friday</div>
+                        <div class="day">Tuesday
+                            <div class="food-container">
+                                <!-- <div th:each="food : ${plans.foods}"> -->
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'tuesday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="day">Wednesday
+                            <div class="food-container">
+                                <!-- <div th:each="food : ${plans.foods}"> -->
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'wednesday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="day">Thursday
+                            <div class="food-container">
+                                <!-- <div th:each="food : ${plans.foods}"> -->
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'thursday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="day">Friday
+                            <div class="food-container">
+                                <!-- <div th:each="food : ${plans.foods}"> -->
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'friday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
                         <!-- <div class="day">Sat</div>
                         <div class="day">Sun</div> -->
                     </div>
                     
-                    <form action="/plans/delete" method="post">
-                        <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
-                        <button type="submit" class="add-meal" role="button">Delete</button>
-                    </form>
+                    <div class="button-container">
+                        <form action="/plans/delete" method="post">
+                            <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
+                            <button type="submit" class="delete-meal" role="button">Delete</button>
+                        </form>
+                        <button th:onclick="|openNutritionData('add-breakfast-modal',${plans.uid})|" style="text-align:center" class="add-meal">Add Meal</button>
                     <!-- <button class="add-meal">Add Meal</button> -->
-            
+                    </div>
                     <div class="space"></div>
                 </div>
             </div>
