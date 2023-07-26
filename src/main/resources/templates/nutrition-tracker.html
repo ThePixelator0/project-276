@@ -90,7 +90,7 @@
 
         <div class="add-food-modal" id="add-breakfast-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-breakfast-modal')">&#10006;</span>
-            <form action="/api/nutrition/add" method="post">
+            <form action="/api/nutrition/add" method="post" onsubmit="return onSubmitForm('breakfast-food-code')">
                 <h3 class="modal-title">Add Breakfast Item</h3>
 
                 <input type="hidden" name="meal-type" value="Breakfast"/>
@@ -110,7 +110,7 @@
 
         <div class="add-food-modal" id="add-lunch-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-lunch-modal')">&#10006;</span>
-            <form action="/api/nutrition/add" method="post">
+            <form action="/api/nutrition/add" method="post" onsubmit="return onSubmitForm('lunch-food-code')">
                 <h3 class="modal-title">Add Lunch Item</h3>
                 <input type="hidden" name="meal-type" value="Lunch"/>
 
@@ -130,7 +130,7 @@
 
         <div class="add-food-modal" id="add-dinner-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-dinner-modal')">&#10006;</span>
-            <form action="/api/nutrition/add" method="post">
+            <form action="/api/nutrition/add" method="post" onsubmit="return onSubmitForm('dinner-food-code')">
                 <h3 class="modal-title">Add Dinner Item</h3>
 
                 <input type="hidden" name="meal-type" value="Dinner"/>
@@ -151,7 +151,7 @@
 
         <div class="add-food-modal" id="add-snack-modal">
             <span class="exit-modal" onclick="closeNutritionData('add-snack-modal')">&#10006;</span>
-            <form action="/api/nutrition/add" method="post">
+            <form action="/api/nutrition/add" method="post" onsubmit="return onSubmitForm('snack-food-code')">
                 <h3 class="modal-title">Add Snack Item</h3>
                 <input type="hidden" name="meal-type" value="Snack"/>
 

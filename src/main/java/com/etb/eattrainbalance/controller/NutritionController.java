@@ -95,17 +95,11 @@ public class NutritionController {
         return nutritions;
     }
 
-    // Endpoint to update a Nutrition entry by ID
-    @PutMapping(value = "/{id}")
-    public String updateNutrition(@PathVariable Long id){
-        // Call the service layer to update a nutrition by id and return the updated nutrition
-        return "Done";
-    }
-
     // Endpoint to delete a Nutrition entry by ID
-    @DeleteMapping(value = "/{id}")
+    @GetMapping("/deleteNutrition/{id}")
     public String deleteNutrition(@PathVariable Long id){
-        // Call the service layer to delete a nutrition by id and return the id
-        return "Done";
+    
+        nutritionRepository.deleteById(id);
+        return "redirect:/nutrition";
     }
 }

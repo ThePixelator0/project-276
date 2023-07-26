@@ -55,7 +55,9 @@ public class WebController {
     @GetMapping("/dashboard")
     public String homeDashboard(Model model){
         Long userID =  ((UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        
         int workoutsCounter = workoutRepo.countByUserID(userID.intValue());
+        
         model.addAttribute("workoutsCounter", workoutsCounter);
         return "home-dashboard";
     }

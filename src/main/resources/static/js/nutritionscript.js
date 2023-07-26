@@ -1,6 +1,6 @@
 const apiParams = {
     apiKey: 'e1Qeo8EhfrLVg7E8hvBXp4eOYhnaOudpgeXLkGml',
-    dataType: ["Survey (FNDDS)", "Branded"],
+    dataType: ["Survey (FNDDS)"],
     pageSize: 3
 }
 
@@ -24,26 +24,46 @@ function closeNutritionData(modalId){
 
 
 
-//api request
+//api post request
 function searchFoods(foodInput, dataListId, foodCodeId){
     const apiUrl = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${apiParams.apiKey}&query=${foodInput}&dataType=${apiParams.dataType}`
     
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const datalist = document.getElementById(dataListId);
+            var datalist = document.getElementById(dataListId);
             datalist.innerHTML = '';
-            var foodCode = document.getElementById(foodCodeId)
             
             var foods = data.foods
             foods.forEach(element => {
-                foodCode.value = element.fdcId
                 const option = document.createElement('option')
                 option.value = element.description
+                option.id = element.fdcId
                 datalist.appendChild(option)
             });
+
+            var options = datalist.childNodes;
+            var foodCode = document.getElementById(foodCodeId)
+
+            for(var i=0; i<options.length; i++){
+                if(options[i].value === foodInput){
+                    foodCode.value = options[i].id
+                }
+            }
+            
         })
 }
+
+function onSubmitForm(foodCodeId){
+    var foodCode = document.getElementById(foodCodeId)
+    if(foodCode.value === ""){
+        alert("This food was not found in the database. Please make sure you select a food from the drop down list")
+        return false
+    }
+
+    return true
+}
+
 
 
 //ajax request to get info
@@ -64,6 +84,7 @@ function getNutritionInfo(mealType, userId, modalId, modalData){
                 nutrientData.innerHTML += `<p>${data[i].protein}</p>`
                 nutrientData.innerHTML += `<p>${data[i].calorie}</p>`
                 nutrientData.innerHTML += `<p>${data[i].fat}</p>`
+                nutrientData.innerHTML += `<p><a href="/api/nutrition/deleteNutrition/${data[i].id}">Remove</a></p>`
             }
         },
         error: function(error){
@@ -74,3 +95,4 @@ function getNutritionInfo(mealType, userId, modalId, modalData){
     document.getElementById("vertical-navigation").style.display = "none"
     modal.style.display = "block"
 }
+
