@@ -95,6 +95,21 @@ public class NutritionController {
         return nutritions;
     }
 
+    @GetMapping("/totalCalorieCount/{userId}")
+    public String getTotalCalorieCount(@PathVariable Long userId){
+        Long total = 0L;
+        List<Nutrition> nutritions = nutritionRepository.findByUserId(userId);
+
+        for(Nutrition nutrition : nutritions){
+            
+            total += Long.parseLong(nutrition.getCalorie());
+        }
+
+
+
+        return Long.toString(total);
+    }
+
     // Endpoint to delete a Nutrition entry by ID
     @GetMapping("/deleteNutrition/{id}")
     public String deleteNutrition(@PathVariable Long id){

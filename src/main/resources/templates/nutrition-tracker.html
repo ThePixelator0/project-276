@@ -41,14 +41,19 @@
         </div>
         
         <div class="page-info-container" id="page-info-container">
-            <div class="date-navigation-container">
-                <span><i class="fa fa-chevron-left"></i></span>
-                <span id="nutrition-date"></span>
-                <span><i class="fa fa-chevron-right"></i></span>
+            
+            <div class="nutrition-navigation-container">
+                <button class="calorie-button" onclick="openNutritionData('calorie-modal')">Set Calorie Intake Goal</button>
+                <div class="date-navigation-container">
+                    <span><i class="fa fa-chevron-left"></i></span>
+                    <span id="nutrition-date"></span>
+                    <span><i class="fa fa-chevron-right"></i></span>
+                </div>
             </div>
+
             <div class="calorie-counter-container">
                 <p class="align-center calorie-title">Calories Remaining</p>
-                <p class="align-center calorie-count">2000</p>
+                <p id="calorie-goal" class="align-center calorie-count"></p>
             </div>
 
             <div class="meals-container">
@@ -86,6 +91,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+
+        <div class="add-food-modal" id="calorie-modal">
+            <span class="exit-modal" onclick="closeNutritionData('calorie-modal')">&#10006;</span>
+
+            <h3 class="modal-title">Set Calorie Goal</h3>
+
+            <form id="set-calorie-form" onsubmit="calorieGoal(event)">
+                <input placeholder="0" class="add-food-input" type="number" required name="set-calorie-goal"/>
+
+                <button class="add-food-button" type="submit">Add</button>
+            </form>
+
         </div>
 
         <div class="add-food-modal" id="add-breakfast-modal">
@@ -173,15 +192,15 @@
             <span class="exit-modal" onclick="closeNutritionData('breakfast-modal')">&#10006;</span>
             <h1>Your Breakfast Data</h1>
             <div class="display-nutrition-data-column">
-                <p><b>Food ID</b></p>
-                <p><b>Date</b></p>
-                <p><b>Meal Type</b></p>
-                <p><b>Food</b></p>
-                <p><b>Protein (grams)</b></p>
-                <p><b>Calories</b></p>
-                <p><b>Fat (grams)</b></p>
+               
+                <p>Food ID</p>
+                <p>Date</p>
+                <p>Meal Type</p>
+                <p>Food</p>
+                <p>Protein (grams)</p>
+                <p>Calories</p>
+                <p>Fat (grams)</p>
             </div>
-           
             <div class="display-nutrition-data-column" id="breakfast-data">
 
             </div>
@@ -192,13 +211,13 @@
             <span class="exit-modal" onclick="closeNutritionData('lunch-modal')">&#10006;</span>
             <h1>Your Lunch Data</h1>
             <div class="display-nutrition-data-column">
-                <p><b>Food ID</b></p>
-                <p><b>Date</b></p>
-                <p><b>Meal Type</b></p>
-                <p><b>Food</b></p>
-                <p><b>Protein (grams)</b></p>
-                <p><b>Calories</b></p>
-                <p><b>Fat (grams)</b></p>
+                <p>Food ID</p>
+                <p>Date</p>
+                <p>Meal Type</p>
+                <p>Food</p>
+                <p>Protein (grams)</p>
+                <p>Calories</p>
+                <p>Fat (grams)</p>
             </div>
            
             <div class="display-nutrition-data-column" id="lunch-data">
@@ -211,13 +230,13 @@
             <span class="exit-modal" onclick="closeNutritionData('dinner-modal')">&#10006;</span>
             <h1>Your Dinner Data</h1>
             <div class="display-nutrition-data-column">
-                <p><b>Food ID</b></p>
-                <p><b>Date</b></p>
-                <p><b>Meal Type</b></p>
-                <p><b>Food</b></p>
-                <p><b>Protein (grams)</b></p>
-                <p><b>Calories</b></p>
-                <p><b>Fat (grams)</b></p>
+                <p>Food ID</p>
+                <p>Date</p>
+                <p>Meal Type</p>
+                <p>Food</p>
+                <p>Protein (grams)</p>
+                <p>Calories</p>
+                <p>Fat (grams)</p>
             </div>
            
             <div class="display-nutrition-data-column" id="dinner-data">
@@ -230,13 +249,13 @@
             <span class="exit-modal" onclick="closeNutritionData('snack-modal')">&#10006;</span>
             <h1>Your Snack Data</h1>
             <div class="display-nutrition-data-column">
-                <p><b>Food ID</b></p>
-                <p><b>Date</b></p>
-                <p><b>Meal Type</b></p>
-                <p><b>Food</b></p>
-                <p><b>Protein (grams)</b></p>
-                <p><b>Calories</b></p>
-                <p><b>Fat (grams)</b></p>
+                <p>Food ID</p>
+                <p>Date</p>
+                <p>Meal Type</p>
+                <p>Food</p>
+                <p>Protein (grams)</p>
+                <p>Calories</p>
+                <p>Fat (grams)</p>
             </div>
            
             <div class="display-nutrition-data-column" id="snack-data">
