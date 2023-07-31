@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/plans.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script th:src="@{/js/planscript.js}" defer></script>
+    <title>Create Plan</title>
+</head>
+<body>
+
+    <div class="page-container">
+        <div class="vertical-navigation">
+            <div class="link-container">
+                <p class="align-center unselected"><a href="/dashboard">Home</a></p>
+            </div>
+
+            <div class="link-container">
+                <p class="align-center unselected"><a href="/nutrition">Nutrition Tracking</a></p>
+            </div>
+
+            <div class="link-container">
+                <p class="align-center unselected"><a href="/workouts">Workout Tracking</a></p>
+            </div>
+
+            <div class="link-container">
+                <p class="align-center current"><a href="/plans">Meal Plans</a></p>
+            </div>
+
+            <div class="link-container">
+                <p class="align-center unselected"><a href="/admin"><span th:if="${#authentication.getPrincipal().getAuthorities()[0].getAuthority()} == 'ADMIN'">Admin</span></a></p>
+            </div>
+
+            <div class="logout-link-container">
+                <p class="align-center logout"><a href="/logout">Log out</a></p>
+            </div>
+        </div>
+        <div class="page-info-container">        
+            <form action="/plans/add" method="post">
+                <input type="text" placeholder="Title" id="planTitle" name="planTitle" th:value="Title"/>
+                <div class="week-contain">
+                    <div class="day">Monday
+                        <div class="food-container" id="days">
+                            <div class="draggable food" draggable="true">Breakfast</div>
+                        </div>
+                        <!-- <div class="meal">Breakfast: Cereal</div>
+                        <div class="meal">Breakfast: Cereal</div>
+                        <div class="meal">Breakfast: Cereal</div>
+                        <div class="meal">Breakfast: Cereal</div> -->
+                    </div>
+                    <div class="day">Tuesday
+                        <div class="food-container" id="days"></div>
+                    </div>
+                    <div class="day">Wednesday
+                        <div class="food-container" id="days"></div>
+                    </div>
+                    <div class="day">Thursday
+                        <div class="food-container" id="days"></div>
+                    </div>
+                    <div class="day">Friday
+                        <div class="food-container" id="days"></div>
+                    </div>
+
+                    <!-- <div class="day">Sat</div>
+                    <div class="day">Sun</div> -->
+                </div>
+                
+                <input type="hidden" id="userId" name="userId" th:value="${#authentication.getPrincipal().getId}"></input>
+                <!-- <button type="submit" class="button-29" role="button">Create Plan</button> -->
+                <button type="submit" role="button" id="savebtn">Save</button>
+            </form>
+            
+            <div class="food-container">
+                <div class="draggable food" draggable="true">Breakfast</div>
+                <div class="draggable food" draggable="true">2</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
