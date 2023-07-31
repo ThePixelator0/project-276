@@ -86,11 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function calorieCalculation(userId){
     //make an ajax request
     const apiUrl = `/api/nutrition/totalCalorieCount/${userId}`
+    var returnValue;
     $.ajax({
         url: apiUrl,
         type: 'GET',
         success: function(data){
             console.log(data);
+            returnValue = Number(document.getElementById('calorie-goal').innerHTML) - Number(data);
+
+            document.getElementById('calorie-goal').innerHTML = String(returnValue) 
         }
     })
 
