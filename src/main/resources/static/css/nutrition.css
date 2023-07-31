@@ -1,4 +1,19 @@
 /* ======= Nutrition styles ======= */
+.nutrition-navigation-container{
+    display: grid;
+    grid-template-columns: 10% 80%;
+}
+
+.calorie-button{
+    padding: 1rem;
+    background-color: var(--green);
+    color: white;
+    border-radius: 0.5rem;
+    width: 13rem;
+    cursor: pointer;
+    border: none;
+}
+
 .date-navigation-container{
     text-align: center;
 }
@@ -122,7 +137,7 @@
 
 .display-nutrition-data-column{
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     width: 100%;
 }
 

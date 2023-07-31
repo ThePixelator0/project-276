@@ -60,11 +60,41 @@ function onSubmitForm(foodCodeId){
         alert("This food was not found in the database. Please make sure you select a food from the drop down list")
         return false
     }
-
+    
     return true
 }
 
+function calorieGoal(event){
+    //need to set dates
+    event.preventDefault();
+    var form = document.getElementById('set-calorie-form')
+    
+    localStorage.setItem('Daily Calorie Goal', form.elements["set-calorie-goal"].value)
 
+    document.getElementById('calorie-goal').innerHTML = form.elements["set-calorie-goal"].value
+
+    document.getElementById('calorie-modal').style.display = 'none';
+    document.getElementById("page-info-container").style.display = "block"
+    document.getElementById("vertical-navigation").style.display = "block"
+    
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('calorie-goal').innerHTML = localStorage.getItem('Daily Calorie Goal')
+})
+
+function calorieCalculation(userId){
+    //make an ajax request
+    const apiUrl = `/api/nutrition/totalCalorieCount/${userId}`
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        success: function(data){
+            console.log(data);
+        }
+    })
+
+}
 
 //ajax request to get info
 function getNutritionInfo(mealType, userId, modalId, modalData){
@@ -76,14 +106,24 @@ function getNutritionInfo(mealType, userId, modalId, modalData){
         success: function(data){
             var nutrientData = document.getElementById(modalData)
             nutrientData.innerHTML = ""
+
             for(var i=0; i<data.length; i++){
+                var creationTime = new Date(data[i].creationDateTime)
                 nutrientData.innerHTML += `<p>${data[i].id}</p>`
-                nutrientData.innerHTML += `<p>${data[i].creationDateTime}</p>`
+
+                nutrientData.innerHTML += `<p>${creationTime.toDateString()}</p>`
+
                 nutrientData.innerHTML += `<p>${data[i].mealType}</p>`
+
                 nutrientData.innerHTML += `<p>${data[i].product}</p>`
+        
+
                 nutrientData.innerHTML += `<p>${data[i].protein}</p>`
+
                 nutrientData.innerHTML += `<p>${data[i].calorie}</p>`
+
                 nutrientData.innerHTML += `<p>${data[i].fat}</p>`
+
                 nutrientData.innerHTML += `<p><a href="/api/nutrition/deleteNutrition/${data[i].id}">Remove</a></p>`
             }
         },
@@ -95,4 +135,3 @@ function getNutritionInfo(mealType, userId, modalId, modalData){
     document.getElementById("vertical-navigation").style.display = "none"
     modal.style.display = "block"
 }
-
