@@ -53,7 +53,7 @@
 
             <div class="calorie-counter-container">
                 <p class="align-center calorie-title">Calories Remaining</p>
-                <p id="calorie-goal" class="align-center calorie-count"></p>
+                <p id="calorie-goal" class="align-center calorie-count">You have not set a calorie goal</p>
             </div>
 
             <div class="meals-container">
@@ -99,7 +99,7 @@
 
             <h3 class="modal-title">Set Calorie Goal</h3>
 
-            <form id="set-calorie-form" onsubmit="calorieGoal(event)">
+            <form action="/nutrition" method="POST" id="set-calorie-form" onsubmit="calorieGoal(event)">
                 <input placeholder="0" class="add-food-input" type="number" required name="set-calorie-goal"/>
 
                 <button class="add-food-button" type="submit">Add</button>
@@ -266,5 +266,10 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/js/nutritionscript.js}"></script>
+
+    <script  th:inline="javascript">
+        var userId = '[[${#authentication.principal.id}]]'
+        calorieCalculation(userId);
+    </script>
 </body>
 </html>

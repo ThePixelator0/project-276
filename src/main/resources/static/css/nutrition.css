@@ -12,6 +12,7 @@
     width: 13rem;
     cursor: pointer;
     border: none;
+    z-index: 9999;
 }
 
 .date-navigation-container{
