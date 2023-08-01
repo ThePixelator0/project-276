@@ -61,7 +61,6 @@ function onSubmitForm(foodCodeId){
 }
 
 function calorieGoal(event){
-    //need to set dates
     event.preventDefault();
     var form = document.getElementById('set-calorie-form')
     
@@ -81,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function calorieCalculation(userId){
     //make an ajax request
+    console.log("Calorie Calculation")
     const apiUrl = `/api/nutrition/totalCalorieCount/${userId}`
     var returnValue;
     $.ajax({
