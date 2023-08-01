@@ -23,7 +23,9 @@ function displayDate() {
 
   if (currentDate.toDateString() === today.toDateString()) {
     dateDisplay.textContent = 'Today';
+    addWorkoutBtn.style.display = 'inline';
   } else {
+    addWorkoutBtn.style.display = 'none';
     const formattedDate = currentDate.toLocaleDateString(undefined, options);
     dateDisplay.textContent = formattedDate;
   }
@@ -144,7 +146,7 @@ function filterWorkoutsByDate(date) {
       workoutItem.style.display = 'none';
     }
 
-    
+    localStorage.setItem('workoutCount', count);
     workoutsCount.textContent = `Total workout count: ${count}`;
   });
 }
@@ -220,6 +222,7 @@ searchBtn2.addEventListener('click', () => {
     let goals = 0;
     goals += parseInt(workoutGoal, 10);
     let finalnum = (goals - scounts);
+    location.reload();
     workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
 
     // Save the value in local storage
@@ -234,6 +237,7 @@ if (savedWorkoutGoal) {
   goals += parseInt(getWorkoutGoalFromLocalStorage(), 10);
   let finalnum = (goals - scounts);
   workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+  console.log("hello");
 }
 
 // Event listener for closing the modal
