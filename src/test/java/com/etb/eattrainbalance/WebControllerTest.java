@@ -9,7 +9,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,6 +58,8 @@ public class WebControllerTest {
             .andExpect(status().isOk());
     }
     
+    // Below doesn't work because trying to access the dashboard without logging in will fail
+
     // @WithMockUser(username = "jdj2@sfu.ca", roles = {"Admin"})
     // @Test
     // public void shouldReturnNutritionTracker() throws Exception {

@@ -29,17 +29,19 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
-       
         RegisterRequest registerRequest = new RegisterRequest();
         registerRequest.setName(name);
         registerRequest.setEmail(email);
         registerRequest.setPassword(password);
-        ResponseEntity.ok(authenticate.register(registerRequest, request));
-        
+
+        AuthResponse authResponse = authenticate.register(registerRequest, request);
+
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/dashboard");
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
+
+
 
     @PostMapping("/register-admin")
     public ResponseEntity<Void> registerAdmin(@Valid @RequestParam("name") String name, @Valid @RequestParam("email") String email, @Valid @RequestParam("password") String password, HttpServletRequest request) {
