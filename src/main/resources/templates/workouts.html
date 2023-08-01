@@ -43,6 +43,8 @@
         </div>
         <div class="remaining-workouts">
           <span class="count" id="remainingCount">You have done <span th:text="${workoutsCount}"></span> workout(s).</span>
+          <br>
+          <span id="workoutGoal">Set a workout goal to keep track of your fitness!</span>
         </div>
         <div class="workout-list" id="workoutList">
           <!-- Workout items will be dynamically added here -->
@@ -68,6 +70,7 @@
           <p id="userId" th:text="${#authentication.principal.id}" class="userid"></p>
         </div>
         <div class="add-workout">
+          <button id="workoutGoalBtn">Workout Goal</button>
           <button id="addWorkoutBtn">Add Workout</button>
         </div>
       </div>
@@ -89,6 +92,21 @@
       </div>
       <div class="exercise-options" id="exerciseOptions">
 
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Set Workout Goal -->
+  <div id="myModal2" class="modal">
+    <div class="modal-content">
+      <div class="search-title">
+        <h4>Set a workout goal!</h4>
+      </div>
+      <div class="searchbar">
+        <input type="number" id="setWorkout" placeholder="How many workouts do you want to do a day?">
+      </div>
+      <div class="enter">
+        <button id="setBtn">Enter</button>
       </div>
     </div>
   </div>
