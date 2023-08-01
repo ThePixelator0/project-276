@@ -43,6 +43,7 @@ function searchFoods(foodInput, dataListId, foodCodeId){
 
             for(var i=0; i<options.length; i++){
                 if(options[i].value === foodInput){
+                    console.log("found")
                     foodCode.value = options[i].id
                 }
             }
@@ -64,7 +65,7 @@ function calorieGoal(event){
     event.preventDefault();
     var form = document.getElementById('set-calorie-form')
     
-    localStorage.setItem('Daily Calorie Goal', form.elements["set-calorie-goal"].value)
+    localStorage.setItem(`Daily_Calorie_Goal_${userId}`, form.elements["set-calorie-goal"].value)
 
     document.getElementById('calorie-goal').innerHTML = form.elements["set-calorie-goal"].value
 
@@ -75,7 +76,12 @@ function calorieGoal(event){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('calorie-goal').innerHTML = localStorage.getItem('Daily Calorie Goal')
+    console.log(localStorage.getItem(`Daily_Calorie_Goal_${userId}`))
+    if(localStorage.getItem(`Daily_Calorie_Goal_${userId}`) === null){
+        document.getElementById('calorie-goal').innerHTML = 'You have not set a calorie goal'
+    } else {
+        document.getElementById('calorie-goal').innerHTML = localStorage.getItem(`Daily_Calorie_Goal_${userId}`)
+    }
 })
 
 function calorieCalculation(userId){
@@ -87,10 +93,12 @@ function calorieCalculation(userId){
         url: apiUrl,
         type: 'GET',
         success: function(data){
-            console.log(data);
-            returnValue = Number(document.getElementById('calorie-goal').innerHTML) - Number(data);
 
-            document.getElementById('calorie-goal').innerHTML = String(returnValue) 
+            if(document.getElementById('calorie-goal').innerHTML !== 'You have not set a calorie goal'){
+                returnValue = Number(document.getElementById('calorie-goal').innerHTML) - Number(data);
+
+                document.getElementById('calorie-goal').innerHTML = String(returnValue) 
+            }
         }
     })
 
