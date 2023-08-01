@@ -348,7 +348,7 @@
 
     <script  th:inline="javascript">
         var userId = '[[${#authentication.principal.id}]]'
-        calorieCalculation(userId);
+        document.addEventListener('DOMContentLoaded', calorieCalculation(userId));
     </script>
 </body>
 </html>
