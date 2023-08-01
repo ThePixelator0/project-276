@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.etb.eattrainbalance.controller.AuthController;
+import com.etb.eattrainbalance.modal.request.LoginRequest;
 import com.etb.eattrainbalance.modal.request.RegisterRequest;
 import com.etb.eattrainbalance.modal.response.AuthResponse;
 import com.etb.eattrainbalance.persistence.entity.User;
@@ -43,7 +44,6 @@ public class AuthControllerTests {
     @Autowired
     private ObjectMapper objectMapper;
 
-
     private User user;
 
     @BeforeEach
@@ -66,6 +66,41 @@ public class AuthControllerTests {
                 .andExpect(header().string("Location", "/dashboard"));
     }
 
+    @Test
+    public void AuthController_RegisterAdmin_ReturnCreated() throws Exception {
+        AuthResponse expectedResponse = new AuthResponse();
 
+        given(authService.registerAdmin(ArgumentMatchers.any(RegisterRequest.class), ArgumentMatchers.any(HttpServletRequest.class)))
+                .willReturn(expectedResponse);
+
+        mockMvc.perform(post("/api/auth/register-admin")
+                .param("name", "Admin Name")
+                .param("email", "adminEmail@sfu.ca")
+                .param("password", "AdminPassword"))
+                .andExpect(status().isFound())
+                .andExpect(header().string("Location", "/dashboard"));
+    }
+
+    @Test
+    public void AuthController_Login_ReturnCreated() throws Exception {
+        given(authService.login(ArgumentMatchers.any(LoginRequest.class), ArgumentMatchers.any(HttpServletRequest.class)))
+                .willReturn(null); // Since login method is not expected to return an object
+
+        mockMvc.perform(post("/api/auth/login")
+                .param("email", "testEmail@sfu.ca")
+                .param("password", "TestPassword"))
+                .andExpect(status().isFound())
+                .andExpect(header().string("Location", "/dashboard"));
+    }
+
+
+    @Test
+    public void AuthController_Logout_RedirectToRoot() throws Exception {
+        mockMvc.perform(post("/api/auth/logout"))
+                .andExpect(status().isFound())
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/"));
+    }
+    
+    
 
 }
