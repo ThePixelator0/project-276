@@ -87,7 +87,7 @@ function calorieCalculation(userId){
         url: apiUrl,
         type: 'GET',
         success: function(data){
-            //console.log(data);
+            console.log(data);
             returnValue = Number(document.getElementById('calorie-goal').innerHTML) - Number(data);
 
             document.getElementById('calorie-goal').innerHTML = String(returnValue) 
