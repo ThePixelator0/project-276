@@ -61,8 +61,7 @@
                             <span th:text="${workoutsCounter}"></span> 
                             workout(s) all time!
                         </span>
-                        <span class="count" id="workProgs">
-                            Daily Goal Progress:<!-- <span th:text="${#numbers.formatDecimal(workoutPercentage, 1, 2)}"></span>  -->0%</span>
+                        <span class="count" id="workProgs">Set a workout goal and your daily progress will appear here!</span>
                         <a href="/workouts" class="button">Add Workout</a>
                     </div>
                 </div>
@@ -82,7 +81,9 @@
         const workoutProgress = parseInt(localStorage.getItem('workoutCount'));
         const dailyProgress = (workoutProgress / workoutGoal)*100;
         const workoutProgs = document.getElementById('workProgs');
-        workoutProgs.textContent = `Daily Goal Progress: ${dailyProgress.toFixed(1)}%`;
+        if (!isNaN(workoutGoal)) {
+            workoutProgs.textContent = `Daily Goal Progress: ${dailyProgress.toFixed(1)}%`;
+        }
     </script>
 </body>
 </html>
