@@ -44,15 +44,19 @@
             
             <div class="nutrition-navigation-container">
                 <button class="calorie-button" onclick="openNutritionData('calorie-modal')">Set Calorie Intake Goal</button>
-                <div class="date-navigation-container">
-                    <span><i class="fa fa-chevron-left"></i></span>
-                    <span id="nutrition-date"></span>
-                    <span><i class="fa fa-chevron-right"></i></span>
+                <div class="navigation-container">
+                    <span th:onclick="|getPastData('past-year', ${#authentication.principal.id})|">Past Year</span>
+
+                    <span th:onclick="|getPastData('past-month', ${#authentication.principal.id})|">Past Month</span>
+
+                    <span th:onclick="|getPastData('past-week', ${#authentication.principal.id})|">Past Week</span>
+
+                    <span th:onclick="|getPastData('all-time', ${#authentication.principal.id})|">All</span>
                 </div>
             </div>
 
             <div class="calorie-counter-container">
-                <p class="align-center calorie-title">Calories Remaining</p>
+                <p class="align-center calorie-title">Daily Calories Remaining</p>
                 <p id="calorie-goal" class="align-center calorie-count">You have not set a calorie goal</p>
             </div>
 
@@ -104,7 +108,82 @@
 
                 <button class="add-food-button" type="submit">Add</button>
             </form>
+        </div>
 
+        <div class="add-food-modal" id="past-year">
+            <span class="exit-modal" onclick="closeNutritionData('past-year')">&#10006;</span>
+            <h1>Nutrition in the Past Year</h1>
+            <div class="past-data-container">
+                <div>
+                    <h3>Total Calories</h3>
+                    <p id="past-year-calorie-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Protein(g)</h3>
+                    <p id="past-year-protein-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Fat(g)</h3>
+                    <p id="past-year-fat-intake"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-food-modal" id="past-month">
+            <span class="exit-modal" onclick="closeNutritionData('past-month')">&#10006;</span>
+            <h1>Nutrition in the Past Month</h1>
+            <div class="past-data-container">
+                <div>
+                    <h3>Total Calories</h3>
+                    <p id="past-month-calorie-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Protein(g)</h3>
+                    <p id="past-month-protein-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Fat(g)</h3>
+                    <p id="past-month-fat-intake"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-food-modal" id="past-week">
+            <span class="exit-modal" onclick="closeNutritionData('past-week')">&#10006;</span>
+            <h1>Nutrition in the Past Week</h1>
+            <div class="past-data-container">
+                <div>
+                    <h3>Total Calories</h3>
+                    <p id="past-week-calorie-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Protein(g)</h3>
+                    <p id="past-week-protein-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Fat(g)</h3>
+                    <p id="past-week-fat-intake"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-food-modal" id="all-time">
+            <span class="exit-modal" onclick="closeNutritionData('all-time')">&#10006;</span>
+            <h1>Nutrition in the Past Week</h1>
+            <div class="past-data-container">
+                <div>
+                    <h3>Total Calories</h3>
+                    <p id="all-time-calorie-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Protein(g)</h3>
+                    <p id="all-time-protein-intake"></p>
+                </div>
+                <div>
+                    <h3>Total Fat(g)</h3>
+                    <p id="all-time-fat-intake"></p>
+                </div>
+            </div>
         </div>
 
         <div class="add-food-modal" id="add-breakfast-modal">
@@ -269,7 +348,7 @@
 
     <script  th:inline="javascript">
         var userId = '[[${#authentication.principal.id}]]'
-        calorieCalculation(userId);
+        document.addEventListener('DOMContentLoaded', calorieCalculation(userId));
     </script>
 </body>
 </html>

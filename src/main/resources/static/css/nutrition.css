@@ -15,8 +15,14 @@
     z-index: 9999;
 }
 
-.date-navigation-container{
+.navigation-container{
     text-align: center;
+}
+
+.navigation-container span{
+    cursor: pointer;
+    color: var(--green);
+    padding: 1rem;
 }
 
 .date-navigation-container span{
@@ -145,3 +151,4 @@
 .display-nutrition-data-column p{
     padding: 2rem;
 }
+

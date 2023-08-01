@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
 
@@ -116,5 +117,29 @@ public class NutritionController {
     
         nutritionRepository.deleteById(id);
         return "redirect:/nutrition";
+    }
+
+    @GetMapping("/past-year/{userId}")
+    public List<Nutrition> getNutritionDataForPastYear(@PathVariable Long userId) {
+        LocalDateTime pastYearDateTime = LocalDateTime.now().minus(1, ChronoUnit.YEARS);
+        return nutritionRepository.findByUserIdAndCreationDateTimeAfter(userId, pastYearDateTime);
+    }
+
+    @GetMapping("/past-month/{userId}")
+    public List<Nutrition> getNutritionDataForPastMonth(@PathVariable Long userId) {
+        LocalDateTime pastMonthDateTime = LocalDateTime.now().minus(1, ChronoUnit.MONTHS);
+        LocalDateTime now = LocalDateTime.now();
+        return nutritionRepository.findByUserIdAndCreationDateTimeBetween(userId, pastMonthDateTime, now);
+    }
+
+    @GetMapping("/past-week/{userId}")
+    public List<Nutrition> getNutritionDataForPastWeek(@PathVariable Long userId) {
+        LocalDateTime pastWeekDateTime = LocalDateTime.now().minus(1, ChronoUnit.WEEKS);
+        return nutritionRepository.findByUserIdAndCreationDateTimeAfter(userId, pastWeekDateTime);
+    }
+
+    @GetMapping("/all-time/{userId}")
+    public List<Nutrition> getNutritionDataAllTime(@PathVariable Long userId) {
+        return nutritionRepository.findByUserId(userId);
     }
 }

@@ -4,10 +4,6 @@ const apiParams = {
     pageSize: 3
 }
 
-//date id
-const currDate = Date.now()
-const dt = new Date(currDate)
-document.getElementById("nutrition-date").innerHTML = dt.toDateString()
 
 /*get and add data*/
 function openNutritionData(modalId){
@@ -138,4 +134,36 @@ function getNutritionInfo(mealType, userId, modalId, modalData){
     document.getElementById("page-info-container").style.display = "none"
     document.getElementById("vertical-navigation").style.display = "none"
     modal.style.display = "block"
+}
+
+
+function getPastData(timeInterval, userId){
+    const apiUrl = `/api/nutrition/${timeInterval}/${userId}`
+    $.ajax({
+        url: apiUrl,
+        type: 'GET',
+        success: function(data){
+            console.log(data);
+            var totalFat = 0;
+            var totalProtein = 0;
+            var totalCalorie = 0;
+            for(var i=0; i<data.length; i++){
+                totalFat += Number(data[i].fat);
+                totalProtein += Number(data[i].protein);
+                totalCalorie += Number(data[i].calorie);
+            }
+
+            document.getElementById(`${timeInterval}-fat-intake`).innerHTML = totalFat.toString()
+            
+            document.getElementById(`${timeInterval}-calorie-intake`).innerHTML = totalCalorie.toString()
+            
+            document.getElementById(`${timeInterval}-protein-intake`).innerHTML = totalProtein.toString();
+        },
+        error: function(error){
+            console.log("Error: ", error)
+        }
+    })
+    document.getElementById(timeInterval).style.display = "block";
+    document.getElementById("page-info-container").style.display = "none"
+    document.getElementById("vertical-navigation").style.display = "none"
 }

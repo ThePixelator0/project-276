@@ -5,9 +5,14 @@ const nextArrow = document.getElementById('nextArrow');
 const workoutList = document.getElementById('workoutList');
 const addWorkoutBtn = document.getElementById('addWorkoutBtn');
 const modal = document.getElementById('myModal');
+const modal2 = document.getElementById('myModal2');
 const searchBar = document.getElementById('searchBar');
 const searchBtn = document.getElementById('searchBtn');
+const searchBar2 = document.getElementById('setWorkout');
+const searchBtn2 = document.getElementById('setBtn');
 const exerciseOptions = document.getElementById('exerciseOptions');
+const workoutsGoal = document.getElementById('workoutGoal');
+const workoutsCount = document.getElementById('remainingCount');
 
 let currentDate = new Date(); // Variable to store the current date value
 
@@ -122,7 +127,7 @@ function addWorkoutToBackend(workout, userId) {
 //       });
 //   }
 // }
-
+let scounts = 0;
 function filterWorkoutsByDate(date) {
   const workoutItems = document.querySelectorAll('.workouts-added');
   let count = 0;
@@ -134,13 +139,18 @@ function filterWorkoutsByDate(date) {
     if (workoutDate === date) {
       workoutItem.style.display = 'block';
       count++;
+      scounts++;
     } else {
       workoutItem.style.display = 'none';
     }
 
-    const workoutsCount = document.getElementById('remainingCount');
-    workoutsCount.textContent = `You have done ${count} workout(s).`;
+    
+    workoutsCount.textContent = `Total workout count: ${count}`;
   });
+}
+
+function setWorkoutGoal() {
+
 }
 
 
@@ -154,12 +164,21 @@ function closeModal() {
   modal.style.display = 'none';
 }
 
+function openModal2() {
+  modal2.style.display = 'block';
+}
+function closeModal2() {
+  modal2.style.display = 'none';
+}
+
 // Event listeners for navigation arrows
 prevArrow.addEventListener('click', goToPreviousDate);
 nextArrow.addEventListener('click', goToNextDate);
 
 // Event listener for add workout button
 addWorkoutBtn.addEventListener('click', openModal);
+
+workoutGoalBtn.addEventListener('click', openModal2);
 
 // Event listener for search button
 searchBtn.addEventListener('click', () => {
@@ -170,10 +189,63 @@ searchBtn.addEventListener('click', () => {
   }
 });
 
+// Function to save the value in local storage
+const saveWorkoutGoalToLocalStorage = (workoutGoal) => {
+  localStorage.setItem('workoutGoal', workoutGoal);
+};
+
+// Function to retrieve the value from local storage
+const getWorkoutGoalFromLocalStorage = () => {
+  return localStorage.getItem('workoutGoal');
+};
+
+// Check if there is a saved value in local storage and update the workoutsGoal element
+const savedWorkoutGoal = getWorkoutGoalFromLocalStorage();
+if (savedWorkoutGoal) {
+  workoutGoalBtn.style.display = 'none';
+  // let goals = 0;
+  // goals += parseInt(savedWorkoutGoal);
+  // const finalnum = goals - scounts;
+  // displayDate()
+  // workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+}
+
+searchBtn2.addEventListener('click', () => {
+  const workoutGoal = searchBar2.value.trim();
+
+  if (workoutGoal !== '') {
+    // Update the workoutsGoal element
+    // workoutsGoal.textContent = `You have ${scounts} remaining workouts`;
+    displayDate()
+    let goals = 0;
+    goals += parseInt(workoutGoal, 10);
+    let finalnum = (goals - scounts);
+    workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+
+    // Save the value in local storage
+    saveWorkoutGoalToLocalStorage(workoutGoal);
+    closeModal2();
+  }
+});
+
+if (savedWorkoutGoal) {
+  displayDate()
+  let goals = 0;
+  goals += parseInt(getWorkoutGoalFromLocalStorage(), 10);
+  let finalnum = (goals - scounts);
+  workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+}
+
 // Event listener for closing the modal
 window.addEventListener('click', (event) => {
   if (event.target === modal) {
     closeModal();
+  }
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target === modal2) {
+    closeModal2();
   }
 });
 
