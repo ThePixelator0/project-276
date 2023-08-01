@@ -42,8 +42,7 @@ function searchFoods(foodInput, dataListId, foodCodeId){
             var foodCode = document.getElementById(foodCodeId)
 
             for(var i=0; i<options.length; i++){
-                if(options[i].value === foodInput){
-                    console.log("found")
+                if(options[i].value === foodInput){ 
                     foodCode.value = options[i].id
                 }
             }
@@ -75,15 +74,6 @@ function calorieGoal(event){
     
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    console.log(localStorage.getItem(`Daily_Calorie_Goal_${userId}`))
-    if(localStorage.getItem(`Daily_Calorie_Goal_${userId}`) === null){
-        document.getElementById('calorie-goal').innerHTML = 'You have not set a calorie goal'
-    } else {
-        document.getElementById('calorie-goal').innerHTML = localStorage.getItem(`Daily_Calorie_Goal_${userId}`)
-    }
-})
-
 function calorieCalculation(userId){
     //make an ajax request
     console.log("Calorie Calculation")
@@ -93,7 +83,7 @@ function calorieCalculation(userId){
         url: apiUrl,
         type: 'GET',
         success: function(data){
-
+            console.log(data);
             if(document.getElementById('calorie-goal').innerHTML !== 'You have not set a calorie goal'){
                 returnValue = Number(document.getElementById('calorie-goal').innerHTML) - Number(data);
 
@@ -104,35 +94,41 @@ function calorieCalculation(userId){
 
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    console.log(localStorage.getItem(`Daily_Calorie_Goal_${userId}`))
+    if(localStorage.getItem(`Daily_Calorie_Goal_${userId}`) === null){
+        document.getElementById('calorie-goal').innerHTML = 'You have not set a calorie goal'
+    } else {
+        document.getElementById('calorie-goal').innerHTML = localStorage.getItem(`Daily_Calorie_Goal_${userId}`)
+    }
+})
+
 //ajax request to get info
 function getNutritionInfo(mealType, userId, modalId, modalData){
     var modal = document.getElementById(modalId)
     const apiUrl = `/api/nutrition/allNutrition/${mealType}/${userId}`
+    
     $.ajax({
         url: apiUrl,
         type: 'GET',
         success: function(data){
             var nutrientData = document.getElementById(modalData)
+            
             nutrientData.innerHTML = ""
-
             for(var i=0; i<data.length; i++){
                 var creationTime = new Date(data[i].creationDateTime)
-                nutrientData.innerHTML += `<p>${data[i].id}</p>`
 
-                nutrientData.innerHTML += `<p>${creationTime.toDateString()}</p>`
-
-                nutrientData.innerHTML += `<p>${data[i].mealType}</p>`
-
-                nutrientData.innerHTML += `<p>${data[i].product}</p>`
-        
-
-                nutrientData.innerHTML += `<p>${data[i].protein}</p>`
-
-                nutrientData.innerHTML += `<p>${data[i].calorie}</p>`
-
-                nutrientData.innerHTML += `<p>${data[i].fat}</p>`
-
-                nutrientData.innerHTML += `<p><a href="/api/nutrition/deleteNutrition/${data[i].id}">Remove</a></p>`
+                nutrientData.innerHTML += `
+                <tr>
+                    <td>${data[i].id}</td>
+                    <td>${creationTime.toDateString()}</td>
+                    <td>${data[i].mealType}</td>
+                    <td>${data[i].product}</td>
+                    <td>${data[i].protein}</td>
+                    <td>${data[i].calorie}</td>
+                    <td>${data[i].fat}</td>
+                    <td><a href="/api/nutrition/deleteNutrition/${data[i].id}">Remove</a></td>
+                </tr>`;
             }
         },
         error: function(error){
@@ -151,7 +147,6 @@ function getPastData(timeInterval, userId){
         url: apiUrl,
         type: 'GET',
         success: function(data){
-            console.log(data);
             var totalFat = 0;
             var totalProtein = 0;
             var totalCalorie = 0;

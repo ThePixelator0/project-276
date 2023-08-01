@@ -2,8 +2,10 @@ package com.etb.eattrainbalance.persistence.repository;
 
 import com.etb.eattrainbalance.persistence.entity.Nutrition;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,4 +20,7 @@ public interface NutritionRepository extends JpaRepository<Nutrition, Long> {
 
     // Get all Nutrition data within a specific date range for the given userId
     List<Nutrition> findByUserIdAndCreationDateTimeBetween(Long userId, LocalDateTime startDate, LocalDateTime endDate);
+
+    @Query("SELECT n FROM Nutrition n WHERE DATE(n.creationDateTime) = :date AND n.userId = :userId")
+    List<Nutrition> findByDateAndUserId(LocalDate date, Long userId);
 }

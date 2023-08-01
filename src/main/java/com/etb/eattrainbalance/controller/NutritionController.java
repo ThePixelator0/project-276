@@ -1,12 +1,15 @@
 package com.etb.eattrainbalance.controller;
 import com.etb.eattrainbalance.persistence.entity.Nutrition;
 import com.etb.eattrainbalance.persistence.repository.NutritionRepository;
+import com.etb.eattrainbalance.persistence.repository.UserRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
+import com.etb.eattrainbalance.persistence.entity.User;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -32,6 +36,10 @@ import java.util.Map;
 public class NutritionController {
     @Autowired
     private NutritionRepository nutritionRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     // Endpoint to create a new Nutrition entry
     @PostMapping("/add")
     public ResponseEntity<Void> addNutrition(@RequestParam Map<String, String> foodData, HttpServletResponse response) {
@@ -99,24 +107,22 @@ public class NutritionController {
     @GetMapping("/totalCalorieCount/{userId}")
     public String getTotalCalorieCount(@PathVariable Long userId){
         Long total = 0L;
-        List<Nutrition> nutritions = nutritionRepository.findByUserId(userId);
-
+        List<Nutrition> nutritions = nutritionRepository.findByDateAndUserId(LocalDate.now(), userId);
+    
         for(Nutrition nutrition : nutritions){
             
             total += Long.parseLong(nutrition.getCalorie());
         }
-
-
 
         return Long.toString(total);
     }
 
     // Endpoint to delete a Nutrition entry by ID
     @GetMapping("/deleteNutrition/{id}")
-    public String deleteNutrition(@PathVariable Long id){
+    public RedirectView deleteNutrition(@PathVariable Long id){
     
         nutritionRepository.deleteById(id);
-        return "redirect:/nutrition";
+        return new RedirectView("/nutrition");
     }
 
     @GetMapping("/past-year/{userId}")
