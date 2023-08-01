@@ -127,11 +127,10 @@ function addWorkoutToBackend(workout, userId) {
 //       });
 //   }
 // }
-let scounts;
+let scounts = 0;
 function filterWorkoutsByDate(date) {
   const workoutItems = document.querySelectorAll('.workouts-added');
   let count = 0;
-  scounts = 0;
 
   workoutItems.forEach((workoutItem) => {
     const workoutDateElement = workoutItem.querySelector('#workoutDate');
@@ -203,6 +202,7 @@ const getWorkoutGoalFromLocalStorage = () => {
 // Check if there is a saved value in local storage and update the workoutsGoal element
 const savedWorkoutGoal = getWorkoutGoalFromLocalStorage();
 if (savedWorkoutGoal) {
+  workoutGoalBtn.style.display = 'none';
   // let goals = 0;
   // goals += parseInt(savedWorkoutGoal);
   // const finalnum = goals - scounts;
@@ -216,11 +216,11 @@ searchBtn2.addEventListener('click', () => {
   if (workoutGoal !== '') {
     // Update the workoutsGoal element
     // workoutsGoal.textContent = `You have ${scounts} remaining workouts`;
-    // let goals = 0;
-    // goals += parseInt(workoutGoal);
-    // const finalnum = goals - scounts;
-    // displayDate()
-    // workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+    displayDate()
+    let goals = 0;
+    goals += parseInt(workoutGoal, 10);
+    let finalnum = (goals - scounts);
+    workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
 
     // Save the value in local storage
     saveWorkoutGoalToLocalStorage(workoutGoal);
@@ -229,10 +229,10 @@ searchBtn2.addEventListener('click', () => {
 });
 
 if (savedWorkoutGoal) {
+  displayDate()
   let goals = 0;
   goals += parseInt(getWorkoutGoalFromLocalStorage(), 10);
   let finalnum = (goals - scounts);
-  displayDate()
   workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
 }
 
