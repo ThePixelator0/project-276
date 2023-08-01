@@ -24,7 +24,9 @@ function displayDate() {
   if (currentDate.toDateString() === today.toDateString()) {
     dateDisplay.textContent = 'Today';
     addWorkoutBtn.style.display = 'inline';
+    workoutsGoal.style.display = 'inline';
   } else {
+    workoutsGoal.style.display = 'none';
     addWorkoutBtn.style.display = 'none';
     const formattedDate = currentDate.toLocaleDateString(undefined, options);
     dateDisplay.textContent = formattedDate;
