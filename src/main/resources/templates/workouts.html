@@ -51,9 +51,9 @@
           <div th:each="workout : ${work}" th:if="${workout.userID == #authentication.principal.id}">
             <div class="workouts-added">
               <div>
-                <h5 th:text="${workout.workoutName}"></h5>
-                <p>Type: <span th:text="${workout.workoutType}"></span></p>
-                <p>Difficulty: <span th:text="${workout.workoutDifficulty}"></span></p>
+                <h5 th:text="${workout.workoutName}" class="workout-name"></h5>
+                <p><span th:text="${workout.workoutType}" class="workout-item"></span></p>
+                <p><span th:text="${workout.workoutDifficulty}" class="workout-difficulty"></span></p>
                 <p><span class="userid" id="workoutDate" th:text="${#dates.format(workout.createdat, 'yyyy-MM-dd')}"></span></p>
               </div>
               <!-- <p>UID: <span th:text="${workout.uid}"></span></p> -->
@@ -82,13 +82,13 @@
   <div id="myModal" class="modal">
     <div class="modal-content">
       <div class="search-title">
-        <h4>Search for a workout by muscle.</h4>
+        <h4>Search for a workout by name or muscle.</h4>
       </div>
       <div class="searchbar">
-        <input type="text" id="searchBar" placeholder="Enter muscle to search">
+        <input type="text" id="searchBar" class="modalinput" placeholder="Search for workouts here">
       </div>
       <div class="enter">
-        <button id="searchBtn">Enter</button>
+        <button id="searchBtn" class="modalbutton">Enter</button>
       </div>
       <div class="exercise-options" id="exerciseOptions">
 
@@ -103,10 +103,10 @@
         <h4>Set a workout goal!</h4>
       </div>
       <div class="searchbar">
-        <input type="number" id="setWorkout" placeholder="How many workouts do you want to do a day?">
+        <input type="number" id="setWorkout" class="modalinput" placeholder="Enter a workout goal">
       </div>
       <div class="enter">
-        <button id="setBtn">Enter</button>
+        <button id="setBtn" class="modalbutton">Enter</button>
       </div>
     </div>
   </div>

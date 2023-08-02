@@ -77,8 +77,8 @@ function fetchWorkoutsByMuscle(muscle) {
     result.forEach(workout => {
       const workoutItem = document.createElement('div');
       workoutItem.className = 'workout-item';
-      workoutItem.innerHTML = `<span class="workout-name" id="name"><strong>${workout.name}</strong></span>
-                        <span class="workout-type" id="type">${workout.type}</span>
+      workoutItem.innerHTML = `<span class="workout-name" id="name"><strong>${workout.name}</strong></span><br>
+                        <span class="workout-type" id="type">${workout.type}</span><br>
                         <span class="workout-difficulty" id="difficulty"><em>${workout.difficulty}</em></span>`;
 
       // Add a click event listener to each workout item
@@ -225,7 +225,7 @@ searchBtn2.addEventListener('click', () => {
     goals += parseInt(workoutGoal, 10);
     let finalnum = (goals - scounts);
     location.reload();
-    workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+    workoutsGoal.textContent = `You have ${finalnum} remaining workouts to reach your goal!`;
 
     // Save the value in local storage
     saveWorkoutGoalToLocalStorage(workoutGoal);
@@ -238,7 +238,7 @@ if (savedWorkoutGoal) {
   let goals = 0;
   goals += parseInt(getWorkoutGoalFromLocalStorage(), 10);
   let finalnum = (goals - scounts);
-  workoutsGoal.textContent = `You have ${finalnum} remaining workouts`;
+  workoutsGoal.textContent = `You have ${finalnum} remaining workouts to reach your goal!`;
   console.log("hello");
 }
 
