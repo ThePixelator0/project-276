@@ -1,20 +1,45 @@
 package com.etb.eattrainbalance.models;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Embeddable
 public class Food {
+
     String name;
     String color;
     String day;
-    
+    Integer serving;
+    Integer calories;
+
+    public Integer getServing() {
+        return serving;
+    }
+
+    public void setServing(Integer serving) {
+        this.serving = serving;
+    }
+
+    public Integer getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Integer calories) {
+        this.calories = calories;
+    }
+
     public Food() {
     }
 
-    public Food(String name, String color, String day) {
+    public Food(String name, String color, String day, Integer serving, Integer calories) {
         this.name = name;
         this.color = color;
         this.day = day;
+        this.serving = serving;
+        this.calories = calories;
     }
 
     public String getName() {

@@ -59,6 +59,14 @@ function openNutritionData(modalId, plansId){
   document.getElementById("vertical-navigation").style.display = "none"
 }
 
+function openNutrition(modalId, foodsId){
+  document.getElementById(modalId).style.display = "block"
+  // document.getElementById("foodId").value = foodsId;
+  console.log(foodsId);
+  document.getElementById("page-info-container").style.display = "none"
+  document.getElementById("vertical-navigation").style.display = "none"
+}
+
 function closeNutritionData(modalId){
   document.getElementById(modalId).style.display = "none"
   document.getElementById("page-info-container").style.display = "block"
@@ -210,4 +218,55 @@ document.addEventListener("click", function (e) {
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 autocomplete(document.getElementById("foodName"), fooditems);
-console.log(document.getElementById("foodName").value);
+// console.log(document.getElementById("autocomplete").value);
+
+// onclick autofill
+// take values from serving size and text in food name
+// pass it into natural language detector and return the calories
+function autofill(){
+  // console.log("autofill");
+  const apiKey = 'd5637b8e104637efc7d4409ffec944fc';
+  const appId = '5e0413b5';
+
+  const apiUrl = 'https://trackapi.nutritionix.com/v2/natural/nutrients';
+  servesize = document.getElementById("foodServe").value;
+  food = document.getElementById("foodName").value;
+  // console.log(servesize + 'g ' + food);
+  const query = servesize + 'g ' + food;
+  var calories = 0;
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'x-app-id': appId,
+    'x-app-key': apiKey,
+  };
+
+  const data = {
+    query: query,
+  };
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the API response here (e.g., extract calories and nutrient info)
+      const foodItems = data.foods; // An array of food items found in the query
+      if (foodItems && foodItems.length > 0) {
+        // Assuming you are interested in the first food item found in the query
+        const firstFoodItem = foodItems[0];
+        calories = firstFoodItem.nf_calories;
+
+        console.log('Calories:', calories);
+        document.getElementById("foodCal").value = parseInt(calories);
+      } else {
+        console.log('No food items found in the query.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+

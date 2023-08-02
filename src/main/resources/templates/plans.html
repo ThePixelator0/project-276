@@ -19,17 +19,24 @@
             <!-- <label for="foodName">Food Name:</label>
             <input type="text" id="foodName" name="foodName" required>
             <div id="foodSuggestions"></div> -->
-            <form autocomplete="off">
-                <div class="autocomplete">
-                    <label for="foodName">Foods:</label>
-                    <input type="text" id="foodName" name="foodName" placeholder="Foods" required>
-                </div>
-            </form>
+            
+            <div class="autocomplete" id="autocomplete">
+                <label for="foodName">Foods:</label>
+                <input type="text" id="foodName" name="foodName" placeholder="Foods" required>
+            </div>
+        
 
-            <label for="foodColor">Food Color:</label>
-            <input type="text" id="foodColor" name="foodColor" placeholder="red,#77DD77,..." required>
+            <label for="foodColor" style="display: flex;" >Assign a Color:</label>
+            <input type="text" id="foodColor" name="foodColor" placeholder="red,#77DD77,..." style="width: auto;" required>
 
-            <label for="foodDay">Select a day:</label>
+            <label for="foodserve"style="display: flex;">Serving Size:</label>
+            <input type="number" id="foodServe" name="foodServe" placeholder="20 g" required>
+
+            <label for="foodCal">Calories:</label>
+            <input type="number" id="foodCal" name="foodCal" placeholder="2000" required>
+            <button onclick="autofill()" class="button-33">Autofill</button>
+
+            <label for="foodDay" style="display: flex;">Select a day:</label>
                 <select id="foodDay" name="foodDay">
                     <option value="monday">Monday</option>
                     <option value="tuesday">Tuesday</option>
@@ -39,9 +46,10 @@
                 </select>
             <input type="hidden" id="planId" name="planId"></input>
             
-            <input type="submit" value="Submit">
+            <input type="submit" class="add-meal" value="Submit">
         </form>
     </div>
+
 
     <div class="page-container">
         <div class="vertical-navigation" id="vertical-navigation">
@@ -119,15 +127,29 @@
                 <div class="item" th:each="plans:${plans}" th:if="${plans.userID == #authentication.principal.id}">
                     <div class="bar">
                         <h2 class="heading" th:text = "${plans.title}"></h2>
-                        <p th:text = "${plans.uid}"></p>
+                        <!-- <p th:text = "${plans.uid}"></p> -->
                         <!-- Dynamically adjust -->
-                        <div class="week">Week of: July 17th</div>
+                        <!-- <div class="week">Week of: July 17th</div> -->
                     </div>
                     <div class="week-contain">
                         <div class="day">Monday
                             <div class="food-container">
                                 <!-- <div th:each="food : ${plans.foods}"> -->
-                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'monday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'monday'}" th:style="'background-color: ' + ${food.color}">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <span class="food-name" th:text="${food.name}"></span>
+                                            <span style="font-size: 8pt;" th:text="'Calories:' + ${food.calories}"></span>
+                                        </div>
+                                        <div>
+                                            <form action="/deleteFoods" method="post">
+                                                <input type="hidden" id="foodName" name="foodName" th:value="${food.name}"/>
+                                                <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
+                                                <button type="submit" class="deletemeal" role="button">✖</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- </div> -->
                             </div>
                             <!-- <div class="meal">Breakfast: Cereal</div>
@@ -138,28 +160,84 @@
                         <div class="day">Tuesday
                             <div class="food-container">
                                 <!-- <div th:each="food : ${plans.foods}"> -->
-                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'tuesday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'tuesday'}" th:style="'background-color: ' + ${food.color}">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <span class="food-name" th:text="${food.name}"></span>
+                                            <span style="font-size: 8pt;" th:text="'Calories:' + ${food.calories}"></span>
+                                        </div>
+                                        <div>
+                                            <form action="/deleteFoods" method="post">
+                                                <input type="hidden" id="foodName" name="foodName" th:value="${food.name}"/>
+                                                <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
+                                                <button type="submit" class="deletemeal" role="button">✖</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <!-- </div> -->
                             </div>
                         </div>
                         <div class="day">Wednesday
                             <div class="food-container">
                                 <!-- <div th:each="food : ${plans.foods}"> -->
-                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'wednesday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
-                                <!-- </div> -->
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'wednesday'}" th:style="'background-color: ' + ${food.color}">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <span class="food-name" th:text="${food.name}"></span>
+                                            <span style="font-size: 8pt;" th:text="'Calories:' + ${food.calories}"></span>
+                                        </div>
+                                        <div>
+                                            <form action="/deleteFoods" method="post">
+                                                <input type="hidden" id="foodName" name="foodName" th:value="${food.name}"/>
+                                                <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
+                                                <button type="submit" class="deletemeal" role="button">✖</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="day">Thursday
                             <div class="food-container">
                                 <!-- <div th:each="food : ${plans.foods}"> -->
-                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'thursday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'thursday'}" th:style="'background-color: ' + ${food.color}">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <span class="food-name" th:text="${food.name}"></span>
+                                            <span style="font-size: 8pt;" th:text="'Calories:' + ${food.calories}"></span>
+                                        </div>
+                                        <div>
+                                            <form action="/deleteFoods" method="post">
+                                                <input type="hidden" id="foodName" name="foodName" th:value="${food.name}"/>
+                                                <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
+                                                <button type="submit" class="deletemeal" role="button">✖</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- </div> -->
                             </div>
                         </div>
                         <div class="day">Friday
                             <div class="food-container">
                                 <!-- <div th:each="food : ${plans.foods}"> -->
-                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'friday'}" th:text="${food.name}" th:style="'background-color: ' + ${food.color}"></div>
+                                <div class="draggable food" draggable="true" th:each="food : ${plans.foods}" th:if="${food.day == 'friday'}" th:style="'background-color: ' + ${food.color}">
+                                    <div style="display: flex;">
+                                        <div>
+                                            <span class="food-name" th:text="${food.name}"></span>
+                                            <span style="font-size: 8pt;" th:text="'Calories:' + ${food.calories}"></span>
+                                        </div>
+                                        <div>
+                                            <form action="/deleteFoods" method="post">
+                                                <input type="hidden" id="foodName" name="foodName" th:value="${food.name}"/>
+                                                <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
+                                                <button type="submit" class="deletemeal" role="button">✖</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- </div> -->
                             </div>
                         </div>
