@@ -29,8 +29,8 @@
             <label for="foodColor" style="display: flex;" >Assign a Color:</label>
             <input type="text" id="foodColor" name="foodColor" placeholder="red,#77DD77,..." style="width: auto;" required>
 
-            <label for="foodserve"style="display: flex;">Serving Size:</label>
-            <input type="number" id="foodServe" name="foodServe" placeholder="20 g" required>
+            <label for="foodserve"style="display: flex;">Serving Size (g):</label>
+            <input type="number" id="foodServe" name="foodServe" placeholder="20" required>
 
             <label for="foodCal">Calories:</label>
             <input type="number" id="foodCal" name="foodCal" placeholder="2000" required>
@@ -248,7 +248,7 @@
                     <div class="button-container">
                         <form action="/plans/delete" method="post">
                             <input type="hidden" id="planId" name="planId" th:value="${plans.uid}"/>
-                            <button type="submit" class="delete-meal" role="button">Delete</button>
+                            <button type="submit" class="delete-meal" role="button">Delete Plan</button>
                         </form>
                         <button th:onclick="|openNutritionData('add-breakfast-modal',${plans.uid})|" style="text-align:center" class="add-meal">Add Meal</button>
                     <!-- <button class="add-meal">Add Meal</button> -->
