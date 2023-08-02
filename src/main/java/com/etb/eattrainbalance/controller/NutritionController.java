@@ -10,6 +10,11 @@ import lombok.RequiredArgsConstructor;
 
 import com.etb.eattrainbalance.persistence.entity.User;
 import java.util.Optional;
+
+import javax.swing.Spring;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -39,6 +44,8 @@ public class NutritionController {
 
     @Autowired
     private UserRepository userRepository;
+
+    private static final Logger log = LoggerFactory.getLogger(NutritionController.class);
 
     // Endpoint to create a new Nutrition entry
     @PostMapping("/add")
@@ -105,17 +112,32 @@ public class NutritionController {
     }
 
     @GetMapping("/totalCalorieCount/{userId}")
-    public String getTotalCalorieCount(@PathVariable Long userId){
-        Long total = 0L;
-        List<Nutrition> nutritions = nutritionRepository.findByDateAndUserId(LocalDate.now(), userId);
-    
-        for(Nutrition nutrition : nutritions){
-            
-            total += Long.parseLong(nutrition.getCalorie());
-        }
+    public String getTotalCalorieCount(@PathVariable Long userId) {
+        try {
+            log.info("Getting total calorie count for user: {}", userId);
 
-        return Long.toString(total);
+            double total = 0.0; // Using double to handle decimal values
+            List<Nutrition> nutritions = nutritionRepository.findByDateAndUserId(LocalDate.now(), userId);
+
+            for(Nutrition nutrition : nutritions){
+                String calorie = nutrition.getCalorie();
+                log.debug("Calorie value for nutrition entry: {}", calorie);
+
+                total += Double.parseDouble(calorie); // Parsing as double to handle decimal values
+            }
+
+            log.info("Total calorie count: {}", total);
+            return Double.toString(total);
+
+        } catch (Exception e) {
+            log.error("Error while calculating total calorie count for user: {}", userId, e);
+            throw e; // Re-throwing to be handled by an exception handler
+        }
     }
+
+
+
+
 
     // Endpoint to delete a Nutrition entry by ID
     @GetMapping("/deleteNutrition/{id}")
