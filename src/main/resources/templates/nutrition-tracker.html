@@ -63,7 +63,6 @@
             <div class="meals-container">
                 <div class="meals-bubble">
                     <h6>Breakfast</h6>
-                    <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-breakfast-modal')" style="text-align:center">ADD FOOD</p>
 
@@ -72,7 +71,6 @@
                 </div>
                 <div class="meals-bubble">
                     <h6>Lunch</h6>
-                    <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-lunch-modal')" style="text-align:center">ADD FOOD</p>
                         <p th:onclick="|getNutritionInfo('Lunch', ${#authentication.principal.id}, 'lunch-modal', 'lunch-data')|">SEE ALL LUNCH DATA</p>
@@ -80,7 +78,6 @@
                 </div>
                 <div class="meals-bubble">
                     <h6>Dinner</h6>
-                    <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-dinner-modal')" style="text-align:center">ADD FOOD</p>
                         <p th:onclick="|getNutritionInfo('Dinner', ${#authentication.principal.id}, 'dinner-modal', 'dinner-data')|">SEE ALL DINNER DATA</p>
@@ -88,7 +85,6 @@
                 </div>
                 <div class="meals-bubble">
                     <h6>Snacks</h6>
-                    <span class="meal-item-count">0</span>
                     <div class="add-see-food-container">
                         <p onclick="openNutritionData('add-snack-modal')" style="text-align:center">ADD FOOD</p>
                         <p th:onclick="|getNutritionInfo('Snack', ${#authentication.principal.id}, 'snack-modal', 'snack-data')|">SEE ALL SNACK DATA</p>
