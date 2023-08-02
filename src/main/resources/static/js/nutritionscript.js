@@ -91,7 +91,6 @@ function calorieCalculation(userId){
             }
         }
     })
-
 }
 
 document.addEventListener('DOMContentLoaded', () => {
