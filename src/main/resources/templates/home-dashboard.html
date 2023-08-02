@@ -48,8 +48,7 @@
                 <div class="fitness-info">
                     <h3>Nutrition Summary</h3>
                     <div class="fitness-summary">
-                        <span class="count" >Daily Calories Remaining: 2000</span>
-                        <span class="count" >Daily Goal Progress: 0%</span>
+                        <span class="count" id="calorie-goal"></span>
                         <a href="/nutrition" class="button">Add Food</a>
                     </div>
                 </div>
@@ -76,6 +75,7 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         const workoutGoal = parseInt(localStorage.getItem('workoutGoal'));
         const workoutProgress = parseInt(localStorage.getItem('workoutCount'));
@@ -83,6 +83,25 @@
         const workoutProgs = document.getElementById('workProgs');
         if (!isNaN(workoutGoal)) {
             workoutProgs.textContent = `Daily Goal Progress: ${dailyProgress.toFixed(1)}%`;
+        }
+    </script>
+
+    <script th:inline="javascript">
+        var userId = '[[${#authentication.principal.id}]]'
+        if(localStorage.getItem(`Daily_Calorie_Goal_${userId}`) !== null){
+            const apiUrl = `/api/nutrition/totalCalorieCount/${userId}`
+            var returnValue;
+            $.ajax({
+                url: apiUrl,
+                type: 'GET',
+                success: function(data){
+                    returnValue = Number(localStorage.getItem(`Daily_Calorie_Goal_${userId}`) ) - Number(data)
+
+                    document.getElementById('calorie-goal').innerHTML = `Daily Calories Remaining: ${returnValue.toString()}`;
+                }
+            })
+        } else {
+            document.getElementById('calorie-goal').innerHTML = "No Calorie Goal Set"
         }
     </script>
 </body>

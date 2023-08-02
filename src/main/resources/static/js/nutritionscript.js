@@ -71,6 +71,8 @@ function calorieGoal(event){
     document.getElementById('calorie-modal').style.display = 'none';
     document.getElementById("page-info-container").style.display = "block"
     document.getElementById("vertical-navigation").style.display = "block"
+
+    calorieCalculation(userId)
     
 }
 

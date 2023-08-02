@@ -81,6 +81,15 @@
     color: var(--green);
 }
 
+
+.past-data-container{
+    display: flex;
+}
+
+.past-data-group{
+    padding: 3rem;
+}
+
 .all-data-modal{
     z-index: 10000;
     display: none;
@@ -93,7 +102,7 @@
     top: 10rem;
     border-radius: 3rem;
     overflow-y: scroll;
-    overflow-x: visible;
+    overflow-x: hidden;
     height: 50vh;
 }
 
@@ -158,15 +167,6 @@
 .display-nutrition-data-table td {
     padding: 24px;
     border-bottom: 1px solid #ddd;
-    text-align: center;
-  }
-  
- 
-  .display-nutrition-data-table tr:hover {
-    background-color: #f2f2f2;
-  }
-
-  .display-nutrition-data-table td:last-child {
     text-align: center;
   }
   
